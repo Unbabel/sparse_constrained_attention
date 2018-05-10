@@ -2,9 +2,18 @@
 ----------------
 by Chaitanya Malaviya, Pedro Ferreira, André Martins
 
-## Preparing the data for a language pair
+#### This repository contains scripts to reproduce the results provided in the above paper. 
+#### Please clone the "dev" branch of the repo at https://github.com/Unbabel/OpenNMT-py/tree/dev before proceeding with the following instructions. Then, clone this repo inside the OpenNMT-py/ directory. 
 
-For the sake of example, let's assume we're handling the `ro-en` language pair.
+### Prerequisites
+
+fast_align (https://github.com/clab/fast_align)
+
+PyTorch, version 0.3.0
+
+### Preparing the data for a language pair
+
+For the sake of an example, let's assume we're handling the `ro-en` language pair.
 The procedure below works for other language pairs, provided the file names
 are consistent.
 
@@ -38,8 +47,10 @@ Note 1: you need to adjust the DATA and ALIGNER paths in this script.
 
 Note 2: you also need to adjust the PATH_FAST_ALIGN in the script `force_align.py`.
 
-3. For training new models with different configurations, run the
-following scripts:
+### Training models
+
+For training models with different configurations, run the
+following example scripts:
 
 ```
 >> run_experiment.sh <gpuid> ro en softmax 0 &
@@ -60,19 +71,26 @@ This will generate log files in the folder `../logs`.
 
 Note: you need to adjust the DATA and ALIGNER paths in this script.
 
-4. To measure the BLEU and METEOR model performance on the test files,
+### Evaluation
+
+To measure the BLEU and METEOR model performance on the test files,
 pick the <model> with best dev performance and use this script:
 
 ```
 >> ./evaluate.sh <model> <DATA>/ro-en/newstest.bpe.sink.ro <DATA>/ro-en/newstest.tc.en
 ```
 
-To dump the attention matrices, use the -dump_attn argument with translate.py. You can load the outputted file with pickle as:
+To measure coverage-related metrics (REP-score and DROP-score) on the test files,
+use the scripts provided in the `coverage-eval` directory:
+
+
+
+In addition, to dump the attention matrices, use the -dump_attn argument with translate.py. You can load the outputted file with pickle as:
 ```
 >> attn_matrices = pickle.load( open(<filename>, 'rb') )
 ```
 
 
-## Reference
+## Citation
 
 TBA
