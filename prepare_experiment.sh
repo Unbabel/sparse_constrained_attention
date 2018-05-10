@@ -1,15 +1,15 @@
 SOURCE=$1 # ro
 TARGET=$2 # en
 LANGPAIR=${SOURCE}-${TARGET}
-#DATA=/mnt/data/home/afm/mt_data/data/${LANGPAIR}
-#ALIGNER=/home/afm/fast_align/build
 DATA=/mnt/disk/afm/data/${LANGPAIR}
 ALIGNER=/mnt/disk/afm/fast_align/build
+OPENNMT=/mnt/disk/afm/OpenNMT-py
+SCRIPTS="`cd $(dirname $0);pwd`"
 preprocess=true
 align=true
 fertilize=true
 
-cd ..
+cd ${OPENNMT}
 
 if $preprocess
 then
@@ -52,7 +52,7 @@ then
           ${DATA}/preprocessed.sink.align.valid.1.pt.txt.tgt \
           > ${DATA}/preprocessed.sink.align.valid.1.pt.txt.src-tgt
     sed -i 's/\t/ ||| /g' ${DATA}/preprocessed.sink.align.valid.1.pt.txt.src-tgt
-    python scripts/force_align.py \
+    python ${SCRIPTS}/force_align.py \
            ${DATA}/a.s2t.params ${DATA}/a.s2t.err \
            ${DATA}/a.t2s.params ${DATA}/a.t2s.err \
            fwd \
@@ -65,7 +65,7 @@ then
           ${DATA}/newstest2016.bpe.${TARGET} \
           > ${DATA}/newstest2016.bpe.${SOURCE}-${TARGET}
     sed -i 's/\t/ ||| /g' ${DATA}/newstest2016.bpe.${SOURCE}-${TARGET}
-    python scripts/force_align.py \
+    python ${SCRIPTS}/force_align.py \
            ${DATA}/a.s2t.params ${DATA}/a.s2t.err \
            ${DATA}/a.t2s.params ${DATA}/a.t2s.err \
            fwd \
@@ -77,7 +77,7 @@ if $fertilize
 then
     for method in guided actual
     do
-        python -u scripts/generate_fertilities.py \
+        python -u ${SCRIPTS}/generate_fertilities.py \
                -method ${method} \
                -train_source ${DATA}/preprocessed.sink.align.train.1.pt.txt.src \
                -train_align ${DATA}/preprocessed.sink.align.train.1.pt.txt.src-tgt.forward.align \
