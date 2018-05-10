@@ -3,7 +3,6 @@ import torch
 from torch.autograd import Variable
 import torch.nn as nn
 import torch.nn.functional as F
-import generate_fertilities as gen
 import torch.optim as optim
 import argparse
 import pdb
@@ -42,7 +41,6 @@ args.model_name += "_" + args.model_type
 
 print("Reading training data...")
 training_data = utils.read_file(args.train_source_path)
-#gen.generate_actual_fertilities(args.train_source_path, args.train_alignments_path, args.train_source_path + ".fert.actual")
 training_ferts = utils.read_file(args.train_source_path + ".fert.actual", fert=True)
 training_data, training_ferts = utils.sortbylength(training_data, training_ferts)
 
@@ -65,7 +63,6 @@ print("Maximum fertility set to %d" %args.max_fert)
 # Read dev and test data
 
 dev_data = utils.read_file(args.dev_source_path)
-#gen.generate_actual_fertilities(args.dev_source_path, args.dev_alignments_path, args.dev_source_path + ".fert.actual")
 dev_ferts = utils.read_file(args.dev_source_path + ".fert.actual", fert=True)
 dev_data, dev_ferts = utils.sortbylength(dev_data, dev_ferts)
 

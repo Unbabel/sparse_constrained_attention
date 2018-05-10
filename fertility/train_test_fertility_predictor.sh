@@ -3,10 +3,15 @@ TARGET=$2 # en
 MODEL_TYPE=$3 # classification|regression
 LANGPAIR=${SOURCE}-${TARGET}
 DATA=/mnt/disk/afm/data/${LANGPAIR}
-#DATA=/mnt/data/home/afm/mt_data/data/${LANGPAIR}
+SCRIPTS="`cd $(dirname $0);cd ..;pwd`"
+LOGS=${SCRIPTS}/logs
 
 train=true
 gpu=0
+
+cd ${SCRIPTS}/fertility
+
+mkdir -p ${LOGS}
 
 if $train
 then
@@ -22,7 +27,7 @@ then
         --train_alignments_path ${DATA}/preprocessed.sink.align.train.1.pt.txt.src-tgt.forward.align \
         --dev_source_path ${DATA}/preprocessed.sink.align.valid.1.pt.txt.src \
         --dev_alignments_path ${DATA}/preprocessed.sink.align.valid.1.pt.txt.src-tgt.forward.align \
-        >& ../logs/log_${LANGPAIR}_fertility_${MODEL_TYPE}_train.txt
+        >& ${LOGS}/log_${LANGPAIR}_fertility_${MODEL_TYPE}_train.txt
 fi
 
 CUDA_VISIBLE_DEVICES=${gpu} \
