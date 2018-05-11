@@ -84,10 +84,7 @@ pick the <model> with best dev performance and use this script:
 ```
 
 To measure coverage-related metrics (REP-score and DROP-score) on the test files,
-use the scripts provided in the `coverage-eval` directory:
-
-
-
+please follow the instructions in the README in the `coverage-eval` folder.
 
 In addition, to dump the attention matrices, use the -dump_attn argument with translate.py. You can load the outputted file with pickle as:
 ```
@@ -95,7 +92,7 @@ In addition, to dump the attention matrices, use the -dump_attn argument with tr
 ```
 
 
-## Citation
+## References
 
 [1] Chaitanya Malaviya, Pedro Ferreira, André Martins.
 "Sparse and Constrained Attention for Neural Machine Translation."
