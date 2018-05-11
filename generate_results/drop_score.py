@@ -99,43 +99,51 @@ def main():
                         help="If provided, excludes alignments relative to stopwords")
     parser.add_argument("--stopwords_path", type=str,
                         help="Path to the stopwords file")
+    parser.add_argument("--test_source", type=str,
+                        help="Path to the test source language file")
 
     # Required arguments
     required = parser.add_argument_group("required arguments")
-    required.add_argument("--align_data_path", type=str, required=True,
-                          help="Path to the alignment data")
-    required.add_argument("--test_source_path", type=str, required=True,
-                          help="Path to the source language bpe corpus file")
+    required.add_argument("--src_ref_align", type=str, required=True,
+                          help="Path to the source/reference alignments")
+    required.add_argument("--src_mt_align", type=str, required=True,
+                          help="Path to the source/prediction alignments")
 
     args = parser.parse_args()
 
-    if args.filter_stopwords and not args.stopwords_path:
-        print("Filtering stopwords requires passing a path to their location")
-        exit()
+    if (args.filter_stopwords or args.stopwords_path or args.test_source):
+        if not (args.filter_stopwords and args.stopwords_path and args.test_source):
+            print("The three optional arguments are dependent of each other")
+            print("Make sure you provide all of them when calling the script")
+            exit()
 
-    ALIGNER_DATA_PATH = args.align_data_path
+    SRC_REF_PATH = args.src_ref_align
+    SRC_MT_PATH = args.src_mt_align
     STOPWORDS_PATH = args.stopwords_path
-    SOURCE_PATH = args.test_source_path
+    SOURCE_PATH = args.test_source
     
     # Source words that were aligned with some reference word
-    src_ref_ixs_aligned = list_of_indeces(ALIGNER_DATA_PATH + "src_ref.align", 0)
+    src_ref_ixs_aligned = list_of_indeces(SRC_REF_PATH, 0)
 
     # Source words that were aligned with some MT predicted word
-    src_mt_ixs_aligned = list_of_indeces(ALIGNER_DATA_PATH + "src_mt.align", 0)
+    src_mt_ixs_aligned = list_of_indeces(SRC_MT_PATH, 0)
 
-    # Create list of source words
-    src_words = [line.strip("\n").split(" ") for line in open(SOURCE_PATH, 'r')]
-
-    # Print the final score
+    # Print the final score    
     if args.filter_stopwords:
+        
+        # Create list of source words
+        src_words = [line.strip("\n").split(" ") for line in open(SOURCE_PATH, 'r')]
+
         # Create the list with the desired stopwords
         stopwords = [line.strip("\n") for line in open(STOPWORDS_PATH, 'r')]
+
         calculate_score(src_ref_ixs_aligned, src_mt_ixs_aligned, src_words, stopwords, 
                                                                 args.filter_stopwords) 
 
     else:
-        calculate_score(src_ref_ixs_aligned, src_mt_ixs_aligned, src_words, list(),
-                                                                args.filter_stopwords)
+        empty_src_words = [list() for entry in src_ref_ixs_aligned]
+        calculate_score(src_ref_ixs_aligned, src_mt_ixs_aligned, empty_src_words, list(),
+                                                                   args.filter_stopwords)
 
 
 if __name__ == "__main__":
