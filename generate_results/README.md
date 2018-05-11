@@ -1,4 +1,4 @@
-### Generate experiments
+### Coverage Metrics
 
 #### REP-score:
 
@@ -16,10 +16,13 @@ Notes:
 
 Optional Flags:
 
-> --normalize, normalizes the score with regard to the number of words in the reference
-> -n, to change the value of _n-grams_ (default: 2)
-> -w1, to change the multiplier lambda 1 (default: 1.0)
-> -w2, to change the multiplier lambda 2 (default: 2.0)
+> **--normalize**, normalizes the score with regard to the number of words in the reference
+
+> **-n**, to change the value of _n-grams_ (default: 2)
+
+> **-w1**, to change the multiplier lambda 1 (default: 1.0)
+
+> **-w2**, to change the multiplier lambda 2 (default: 2.0)
 
 #### DROP-score:
 
@@ -32,18 +35,21 @@ To obtain the DROP-score use the drop\_score.py script.
 
 Optional Flags:
 
-> --filter\_stopwords, to exclude counts related with provided stopwords (default: False)
-> --test\_source, provide the path to the source file (merged).
-> --stopwords\_path, path to the stopwords file (one stopword per line)
+> **--filter\_stopwords**, to exclude counts related with provided stopwords (default: False)
+
+> **--test\_source**, provide the path to the source file (merged).
+
+> **--stopwords\_path**, path to the stopwords file (one stopword per line)
 
 Notes:
 
 - The alignments are expected to follow [fast_align](https://github.com/clab/fast_align) format.
 - All the provided files should be merged (without bpe applied).
+- The 3 optional flags are necessary to filter stopwords.
 
 #### Auxiliary scripts:
 
-**Train aligner and obtain source-reference alignments**:
+_**Train aligner and obtain source-reference alignments**_:
 
 To train the aligner and obtain the source reference alignments the script train\_aligner.sh might be used as
 
@@ -59,10 +65,10 @@ for example,
 
 Notes:
 
-- Change the path to [fast_align](https://github.com/clab/fast_align) to your local copy of the repository.
+- Change the [fast_align](https://github.com/clab/fast_align) path to the path of your local copy of the repository.
 - To replicate the paper results, make sure that the data used is merged (without bpe applied) and the source files include the <SINK> token.
 
-**Obtain coverage metric values for a single predictions**:
+_**Obtain coverage metric values for a single predictions**_:
 
 To obtain the coverage metrics for a single prediction, use the script run\_coverage\_metrics.sh
 
@@ -81,7 +87,7 @@ Notes:
 - The provided files should be merged (without bpe applied).
 - The alignments are expected to follow [fast_align](https://github.com/clab/fast_align) format.
 
-**Obtain coverage metric values for several predictions**:
+_**Obtain coverage metric values for several predictions**_:
 
 To obtain the coverage metrics for a several predictions at once, use the script run\_coverage\_metrics\_several.sh.
 
