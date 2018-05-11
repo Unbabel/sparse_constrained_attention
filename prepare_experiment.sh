@@ -5,8 +5,8 @@ DATA=/mnt/disk/afm/data/${LANGPAIR}
 ALIGNER=/mnt/disk/afm/fast_align/build
 OPENNMT=/mnt/disk/afm/OpenNMT-py
 SCRIPTS="`cd $(dirname $0);pwd`"
-preprocess=false #true
-align=false #true
+preprocess=true
+align=true
 fertilize=true
 
 cd ${OPENNMT}
@@ -87,6 +87,6 @@ then
                -test_align ${DATA}/newstest2016.bpe.${SOURCE}-${TARGET}.forward.align
     done
 
-    # Train and test the fertility predictor.
+    echo "Training and testing the fertility predictor..."
     ${SCRIPTS}/fertility/train_test_fertility_predictor.sh ${SOURCE} ${TARGET} classification
 fi
