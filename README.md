@@ -94,8 +94,6 @@ In addition, to dump the attention matrices, use the -dump_attn argument with tr
 
 ## References
 
-[1] Chaitanya Malaviya, Pedro Ferreira, André Martins.
-"Sparse and Constrained Attention for Neural Machine Translation."
-ACL 2018.
+[1] Chaitanya Malaviya, Pedro Ferreira, Andre Martins. Sparse and Constrained Attention for Neural Machine Translation. Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (ACL). Melbourne, Australia, July 2018.
 
 
