@@ -2,14 +2,17 @@
 ----------------
 by Chaitanya Malaviya, Pedro Ferreira, André Martins
 
-#### This repository contains scripts to reproduce the results provided in the above paper. 
-#### Please clone the "dev" branch of the repo at https://github.com/Unbabel/OpenNMT-py/tree/dev before proceeding with the following instructions. Then, clone this repo inside the OpenNMT-py/ directory. 
+#### This repository contains scripts for carrying out the experiments described in ref. [1] below. 
 
 ### Prerequisites
 
-fast_align (https://github.com/clab/fast_align)
+- fast_align (https://github.com/clab/fast_align)
+- PyTorch, version 0.3.0
+- OpenNMT-py Unbabel fork (instructions below)
 
-PyTorch, version 0.3.0
+### OpenNMT-py Unbabel fork
+
+- Please clone the `dev` branch of the repo at https://github.com/Unbabel/OpenNMT-py/tree/dev.
 
 ### Preparing the data for a language pair
 
@@ -39,11 +42,11 @@ Note 2: these files should *not* include the `sink` symbol.
 
 This will add the `sink` symbol on the source files, train the aligner,
 force alignments on the dev and test data, and run scripts which
-create the gold and guided fertility files.
+create the gold, guided, actual, and predicted fertility files.
 It will also run the `preprocess.py` OpenNMT-py script to create
 the train and validation data files.
 
-Note 1: you need to adjust the DATA and ALIGNER paths in this script.
+Note 1: you need to adjust the DATA, ALIGNER, and OPENNMT paths in this script.
 
 Note 2: you also need to adjust the PATH_FAST_ALIGN in the script `force_align.py`.
 
@@ -67,9 +70,9 @@ following example scripts:
 >> run_experiment.sh <gpuid> ro en csparsemax 0.2 guided &
 ```
 
-This will generate log files in the folder `../logs`.
+This will generate log files in the folder `logs`.
 
-Note: you need to adjust the DATA and ALIGNER paths in this script.
+Note: you need to adjust the DATA, ALIGNER, and OPENNMT paths in this script.
 
 ### Evaluation
 
@@ -85,6 +88,7 @@ use the scripts provided in the `coverage-eval` directory:
 
 
 
+
 In addition, to dump the attention matrices, use the -dump_attn argument with translate.py. You can load the outputted file with pickle as:
 ```
 >> attn_matrices = pickle.load( open(<filename>, 'rb') )
@@ -93,4 +97,8 @@ In addition, to dump the attention matrices, use the -dump_attn argument with tr
 
 ## Citation
 
-TBA
+[1] Chaitanya Malaviya, Pedro Ferreira, André Martins.
+"Sparse and Constrained Attention for Neural Machine Translation."
+ACL 2018.
+
+
