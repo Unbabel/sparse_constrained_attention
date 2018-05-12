@@ -2,6 +2,9 @@ model=$1
 source=$2
 target=$3
 
+OPENNMT=/mnt/disk/afm/OpenNMT-py
+SCRIPTS="`cd $(dirname $0);pwd`"
+
 gpu=0
 dump_attention=true #false
 
@@ -22,8 +25,6 @@ langpair=${srclang}-${tgtlang}
 align=data/${langpair}/corpus.bpe.${langpair}.forward.align
 train_src=data/${langpair}/corpus.bpe.${srclang}
 
-cd ..
-
 extra_flags=""
 if ${dump_attention}
 then
@@ -42,11 +43,14 @@ for alpha in 0 #0 0.2 0.4 0.6 0.8 1
 do
     for beta in 0 #0 0.2 0.4 0.6 0.8 1
     do
+	cd ${OPENNMT}
 	python -u translate.py -model $model -src $source -output $target.pred -beam_size $beam -batch_size 1 -alpha ${alpha} -beta ${beta} -min_attention 0.1 ${extra_flags} -replace_unk -verbose -gpu $gpu
 	sed -r 's/(@@ )|(@@ ?$)//g' $target.pred > $target.pred.merged
 	sed -r 's/(@@ )|(@@ ?$)//g' $target > $target.merged
 	echo ""
 	echo "alpha = $alpha, beta = $beta"
+	
+	cd ${SCRIPTS}
 	perl multi-bleu.perl -lc $target.merged < $target.pred.merged
 	java -Xmx2G -jar meteor-1.5/meteor-1.5.jar $target.pred.merged $target.merged -l $tgtlang | tail -1
     done
