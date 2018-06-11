@@ -42,7 +42,8 @@ if $train
 then
     if [ "$ATTN" == "softmax" ] || [ "$ATTN" == "sparsemax" ]
     then
-        python -u train.py -data ${DATA}/preprocessed.sink.align \
+        # Note: Add a `-fertility 1` flag to use the sink token (the default is not to use it).
+        python -u train.py -data ${DATA}/preprocessed.align \
                -save_model ${MODEL}/preprocessed_${ATTN}_cattn-${cattn}${EXTRA_NAME} \
                -attn_transform ${TRANSFORM} \
                -c_attn ${cattn} ${EXTRA_FLAGS} -seed 42 -gpuid ${gpu} &> \

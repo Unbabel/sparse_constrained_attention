@@ -18,7 +18,7 @@ attn_transform=constrained_softmax
 c_attn=0.2
 
 beam=10
-srclang=tr
+srclang=ro
 tgtlang=en
 
 langpair=${srclang}-${tgtlang}
@@ -39,12 +39,15 @@ then
     extra_flags="${extra_flags} -attn_transform ${attn_transform} -c_attn ${c_attn}"
 fi
 
-for alpha in 0 #0 0.2 0.4 0.6 0.8 1
+for alpha in 0 # 0.2 0.4 0.6 0.8 1
 do
-    for beta in 0 #0 0.2 0.4 0.6 0.8 1
+    for beta in 0 # 0.2 0.4 0.6 0.8 1
     do
 	cd ${OPENNMT}
-	python -u translate.py -model $model -src $source -output $target.pred -beam_size $beam -batch_size 1 -alpha ${alpha} -beta ${beta} -min_attention 0.1 ${extra_flags} -replace_unk -verbose -gpu $gpu
+	python -u translate.py -model $model -src $source -output $target.pred \
+	       -beam_size $beam -batch_size 1 -coverage_penalty wu -length_penalty wu \
+	       -alpha ${alpha} -beta ${beta} -min_attention 0.1 ${extra_flags} \
+	       -replace_unk -verbose -gpu $gpu
 	sed -r 's/(@@ )|(@@ ?$)//g' $target.pred > $target.pred.merged
 	sed -r 's/(@@ )|(@@ ?$)//g' $target > $target.merged
 	echo ""

@@ -27,6 +27,14 @@ then
            -valid_tgt ${DATA}/newsdev2016.bpe.${TARGET} \
            -save_data ${DATA}/preprocessed.sink.align \
            -write_txt
+
+    # Generate also data without the sink token (for baselines).
+    python -u preprocess.py \
+           -train_src ${DATA}/corpus.bpe.${SOURCE} \
+           -train_tgt ${DATA}/corpus.bpe.${TARGET} \
+           -valid_src ${DATA}/newsdev2016.bpe.${SOURCE} \
+           -valid_tgt ${DATA}/newsdev2016.bpe.${TARGET} \
+           -save_data ${DATA}/preprocessed.align
 fi
 
 if $align
