@@ -48,7 +48,9 @@ the train and validation data files.
 
 Note 1: you need to adjust the DATA, ALIGNER, and OPENNMT paths in this script.
 
-Note 2: you also need to adjust the PATH_FAST_ALIGN in the script `force_align.py`.
+Note 2: you need to adjust the PATH_FAST_ALIGN in the script `force_align.py`.
+
+Note 3: you need to adjust the DATA path in the script `fertility/train_test_fertility_predictor.sh`.
 
 ### Training models
 
