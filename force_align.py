@@ -5,8 +5,7 @@ import subprocess
 import sys
 import threading
 
-#PATH_FAST_ALIGN = '/home/afm/fast_align/build'
-PATH_FAST_ALIGN = '/mnt/disk/afm/fast_align/build'
+PATH_FAST_ALIGN = '/home/ubuntu/fast_align/build'
 
 # Simplified, non-threadsafe version for force_align.py
 # Use the version in realtime for development

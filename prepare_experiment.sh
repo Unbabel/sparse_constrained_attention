@@ -1,12 +1,13 @@
-SOURCE=$1 # ro
-TARGET=$2 # en
+SOURCE=$1 # eg. ro
+TARGET=$2 # eg. en
 LANGPAIR=${SOURCE}-${TARGET}
-DATA=/mnt/disk/afm/data/${LANGPAIR}
-ALIGNER=/mnt/disk/afm/fast_align/build
-OPENNMT=/mnt/disk/afm/OpenNMT-py
+DATA=/mnt/data/${LANGPAIR}
+ALIGNER=/home/ubuntu/fast_align/build
+OPENNMT=/home/ubuntu/OpenNMT-py-un
 SCRIPTS="`cd $(dirname $0);pwd`"
-preprocess=true
-align=true
+
+preprocess=false
+align=false
 fertilize=true
 
 cd ${OPENNMT}
