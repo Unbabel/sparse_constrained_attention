@@ -10,7 +10,16 @@ COVERAGE=$9 # true|false
 LAMBDA_COVERAGE=$10 # 1
 train=true
 
-LANGPAIR=${SOURCE}-${TARGET}
+echo "Parameters:"
+echo "gpu: ${gpu}"
+echo "source: ${SOURCE}"
+echo "target: ${TARGET}"
+echo "seed: ${SEED}"
+echo "attention: ${ATTN}"
+echo "constrained attention value: ${cattn}"
+echo "fertility type: ${FERTTYPE}"
+
+LANGPAIR=${SOURCE}-${TARGET}-md
 DATA=/mnt/data/${LANGPAIR}
 MODEL=/mnt/model/${LANGPAIR}
 OPENNMT=/home/ubuntu/OpenNMT-py-un
@@ -28,7 +37,7 @@ else
 fi
 
 cd ${OPENNMT}
-mkdir -p ${MODEL}
+#mkdir -p ${MODEL}
 #mkdir -p ${LOGS}
 
 if [ "$COVERAGE" == "true" ]

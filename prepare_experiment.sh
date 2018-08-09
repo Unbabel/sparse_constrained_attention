@@ -1,7 +1,7 @@
 SOURCE=$1 # eg. ro
 TARGET=$2 # eg. en
 LANGPAIR=${SOURCE}-${TARGET}
-DATA=/mnt/data/${LANGPAIR}
+DATA=/mnt/data/${LANGPAIR}-md
 ALIGNER=/home/ubuntu/fast_align/build
 OPENNMT=/home/ubuntu/OpenNMT-py-un
 SCRIPTS="`cd $(dirname $0);pwd`"
@@ -14,18 +14,19 @@ cd ${OPENNMT}
 
 if $preprocess
 then
-    for prefix in corpus newsdev2016 newstest2016
-    do
-        sed 's/$/ <sink>/' ${DATA}/$prefix.bpe.${SOURCE} > ${DATA}/$prefix.bpe.sink.${SOURCE}
-    done
+    #for prefix in corpus newsdev2016 newstest2016
+#    for prefix in train dev test
+#    do
+#        sed 's/$/ <sink>/' ${DATA}/$prefix.bpe.${SOURCE} > ${DATA}/$prefix.bpe.sink.${SOURCE}
+#    done
 
     rm -rf ${DATA}/preprocessed.sink.align*.pt
 
     python -u preprocess.py \
-           -train_src ${DATA}/corpus.bpe.sink.${SOURCE} \
-           -train_tgt ${DATA}/corpus.bpe.${TARGET} \
-           -valid_src ${DATA}/newsdev2016.bpe.sink.${SOURCE} \
-           -valid_tgt ${DATA}/newsdev2016.bpe.${TARGET} \
+           -train_src ${DATA}/train.bpe.sink.${SOURCE} \
+           -train_tgt ${DATA}/train.bpe.${TARGET} \
+           -valid_src ${DATA}/dev.bpe.sink.${SOURCE} \
+           -valid_tgt ${DATA}/dev.bpe.${TARGET} \
            -save_data ${DATA}/preprocessed.sink.align \
            -write_txt
 fi
@@ -62,16 +63,16 @@ then
 
     echo "Running aligner on test data..."
     paste -d '\t' \
-          ${DATA}/newstest2016.bpe.sink.${SOURCE} \
-          ${DATA}/newstest2016.bpe.${TARGET} \
-          > ${DATA}/newstest2016.bpe.${SOURCE}-${TARGET}
-    sed -i 's/\t/ ||| /g' ${DATA}/newstest2016.bpe.${SOURCE}-${TARGET}
+          ${DATA}/test.bpe.sink.${SOURCE} \
+          ${DATA}/test.bpe.${TARGET} \
+          > ${DATA}/test.bpe.${SOURCE}-${TARGET}
+    sed -i 's/\t/ ||| /g' ${DATA}/test.bpe.${SOURCE}-${TARGET}
     python ${SCRIPTS}/force_align.py \
            ${DATA}/a.s2t.params ${DATA}/a.s2t.err \
            ${DATA}/a.t2s.params ${DATA}/a.t2s.err \
            fwd \
-           < ${DATA}/newstest2016.bpe.${SOURCE}-${TARGET} \
-           > ${DATA}/newstest2016.bpe.${SOURCE}-${TARGET}.forward.align
+           < ${DATA}/test.bpe.${SOURCE}-${TARGET} \
+           > ${DATA}/test.bpe.${SOURCE}-${TARGET}.forward.align
 fi
 
 if $fertilize
@@ -84,8 +85,8 @@ then
                -train_align ${DATA}/preprocessed.sink.align.train.1.pt.txt.src-tgt.forward.align \
                -dev_source ${DATA}/preprocessed.sink.align.valid.1.pt.txt.src \
                -dev_align ${DATA}/preprocessed.sink.align.valid.1.pt.txt.src-tgt.forward.align \
-               -test_source ${DATA}/newstest2016.bpe.sink.${SOURCE} \
-               -test_align ${DATA}/newstest2016.bpe.${SOURCE}-${TARGET}.forward.align
+               -test_source ${DATA}/test.bpe.sink.${SOURCE} \
+               -test_align ${DATA}/test.bpe.${SOURCE}-${TARGET}.forward.align
     done
 
     echo "Training and testing the fertility predictor..."

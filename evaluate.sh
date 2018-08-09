@@ -10,9 +10,9 @@ gpu=0
 beam=10
 srclang=de
 tgtlang=en
-langpair=${srclang}-${tgtlang}
-align=data/${langpair}/corpus.bpe.${langpair}.forward.align
-train_src=data/${langpair}/corpus.bpe.${srclang}
+langpair=${srclang}-${tgtlang}-md
+#align=data/${langpair}/corpus.bpe.${langpair}.forward.align
+#train_src=data/${langpair}/corpus.bpe.${srclang}
 
 # Dump attention flag
 dump_attention=false
@@ -50,7 +50,10 @@ do
                                -src ${source} \
                                -output ${target}.pred \
                                -beam_size ${beam} \
-                               -batch_size 1 \
+                               -batch_size 30 \
+                               -min_length 2 \
+                               -coverage_penalty wu \
+                               -length_penalty wu \
                                -alpha ${alpha} \
                                -beta ${beta} \
                                -min_attention 0.1 \
@@ -70,5 +73,7 @@ do
 done
 
 #MT_PREDICTIONS_PATH=/home/ubuntu/NMT-Code/attention_comparison/thesis/generate_results_${srclang}_${tgtlang}
-#cp ${target}.pred ${MT_PREDICTIONS_PATH}/preds/
-#cp ${target}.pred.merged ${MT_PREDICTIONS_PATH}/mt_predictions
+MT_PREDICTIONS_PATH=/home/ubuntu/NMT-Code/attention_comparison/thesis/guided_nmt/generate_results_${srclang}_${tgtlang}_domain
+POS=base-csp-true
+cp ${target}.pred ${MT_PREDICTIONS_PATH}/preds/test.${srclang}.pred.${POS}
+cp ${target}.pred.merged ${MT_PREDICTIONS_PATH}/mt_predictions/test.${srclang}.pred.${POS}.merged

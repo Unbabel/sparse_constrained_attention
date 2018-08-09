@@ -2,7 +2,7 @@ SOURCE=$1 # ro
 TARGET=$2 # en
 MODEL_TYPE=$3 # classification|regression
 LANGPAIR=${SOURCE}-${TARGET}
-DATA=/mnt/data/${LANGPAIR}
+DATA=/mnt/data/${LANGPAIR}-md
 SCRIPTS="`cd $(dirname $0);cd ..;pwd`"
 LOGS=${SCRIPTS}/logs
 
@@ -49,7 +49,7 @@ then
         --train_alignments_path ${DATA}/preprocessed.sink.align.train.1.pt.txt.src-tgt.forward.align \
         --dev_source_path ${DATA}/preprocessed.sink.align.valid.1.pt.txt.src \
         --dev_alignments_path ${DATA}/preprocessed.sink.align.valid.1.pt.txt.src-tgt.forward.align \
-        --test --test_source_path ${DATA}/newstest2016.bpe.sink.${SOURCE}
+        --test --test_source_path ${DATA}/test.bpe.sink.${SOURCE}
 
     echo "Predicted test"
     echo
