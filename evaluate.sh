@@ -73,7 +73,7 @@ do
 done
 
 #MT_PREDICTIONS_PATH=/home/ubuntu/NMT-Code/attention_comparison/thesis/generate_results_${srclang}_${tgtlang}
-MT_PREDICTIONS_PATH=/home/ubuntu/NMT-Code/attention_comparison/thesis/guided_nmt/generate_results_${srclang}_${tgtlang}_domain
-POS=base-csp-true
-cp ${target}.pred ${MT_PREDICTIONS_PATH}/preds/test.${srclang}.pred.${POS}
-cp ${target}.pred.merged ${MT_PREDICTIONS_PATH}/mt_predictions/test.${srclang}.pred.${POS}.merged
+#MT_PREDICTIONS_PATH=/home/ubuntu/NMT-Code/attention_comparison/thesis/guided_nmt/generate_results_${srclang}_${tgtlang}_domain
+#POS=base-csp-true
+#cp ${target}.pred ${MT_PREDICTIONS_PATH}/preds/test.${srclang}.pred.${POS}
+#cp ${target}.pred.merged ${MT_PREDICTIONS_PATH}/mt_predictions/test.${srclang}.pred.${POS}.merged

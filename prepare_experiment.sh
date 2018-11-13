@@ -1,7 +1,7 @@
 SOURCE=$1 # eg. ro
 TARGET=$2 # eg. en
 LANGPAIR=${SOURCE}-${TARGET}
-DATA=/mnt/data/${LANGPAIR}-md
+DATA=/mnt/data/${LANGPAIR}-scnmt
 ALIGNER=/home/ubuntu/fast_align/build
 OPENNMT=/home/ubuntu/OpenNMT-py-un
 SCRIPTS="`cd $(dirname $0);pwd`"
@@ -20,7 +20,7 @@ then
 #        sed 's/$/ <sink>/' ${DATA}/$prefix.bpe.${SOURCE} > ${DATA}/$prefix.bpe.sink.${SOURCE}
 #    done
 
-    rm -rf ${DATA}/preprocessed.sink.align*.pt
+    #rm -rf ${DATA}/preprocessed.sink.align*.pt
 
     python -u preprocess.py \
            -train_src ${DATA}/train.bpe.sink.${SOURCE} \

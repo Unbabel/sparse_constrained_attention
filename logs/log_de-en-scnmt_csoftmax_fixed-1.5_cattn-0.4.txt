@@ -1,0 +1,791 @@
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+ * vocabulary size. source = 24825; target = 17703
+Building model...
+Intializing model parameters.
+NMTModel(
+  (encoder): RNNEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(24825, 500, padding_idx=1)
+        )
+      )
+    )
+    (rnn): LSTM(500, 250, num_layers=2, dropout=0.3, bidirectional=True)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(17703, 500, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.3)
+    (rnn): StackedLSTM(
+      (dropout): Dropout(p=0.3)
+      (layers): ModuleList(
+        (0): LSTMCell(1000, 500)
+        (1): LSTMCell(500, 500)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_in): Linear(in_features=500, out_features=500)
+      (linear_out): Linear(in_features=1000, out_features=500)
+      (sm): ConstrainedSoftmax(
+      )
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=500, out_features=17703)
+    (1): LogSoftmax()
+  )
+)
+* number of parameters: 38899203
+('encoder: ', 15420500)
+('decoder: ', 23478703)
+Making optimizer for training.
+Stage 1: Keys after executing optim.set_parameters(model.parameters())
+optim.optimizer.state_dict()['state'] keys: 
+optim.optimizer.state_dict()['param_groups'] elements: 
+optim.optimizer.state_dict()['param_groups'] element: {'dampening': 0, 'nesterov': False, 'lr': 1.0, 'params': [140485337121728, 140485337121816, 140485337121904, 140485337121992, 140485337122080, 140485337122168, 140485337122256, 140485337122344, 140485337122432, 140485337122520, 140485337122608, 140485337122696, 140485337122784, 140485337122872, 140485337122960, 140485337123048, 140485337123136, 140485337123224, 140485337123312, 140485337123400, 140485337123488, 140485337123576, 140485337123664, 140485337123752, 140485337123840, 140485337123928, 140485337124016, 140485337124104, 140485337124192, 140485337124280], 'weight_decay': 0, 'momentum': 0}
+
+Start training...
+ * number of epochs: 13, starting from Epoch 1
+ * batch size: 64
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch  1,    50/ 2357; acc:   3.96; ppl: 59110.06; xent:  10.99; 2467 src tok/s; 2482 tgt tok/s;     25 s elapsed
+Epoch  1,   100/ 2357; acc:   4.22; ppl: 40100.43; xent:  10.60; 2332 src tok/s; 2366 tgt tok/s;     53 s elapsed
+Epoch  1,   150/ 2357; acc:   4.78; ppl: 3440.58; xent:   8.14; 2492 src tok/s; 2516 tgt tok/s;     76 s elapsed
+Epoch  1,   200/ 2357; acc:   5.25; ppl: 2151.66; xent:   7.67; 2305 src tok/s; 2346 tgt tok/s;    106 s elapsed
+Epoch  1,   250/ 2357; acc:   9.30; ppl: 929.98; xent:   6.84; 2388 src tok/s; 2405 tgt tok/s;    134 s elapsed
+Epoch  1,   300/ 2357; acc:  11.37; ppl: 673.48; xent:   6.51; 2455 src tok/s; 2474 tgt tok/s;    158 s elapsed
+Epoch  1,   350/ 2357; acc:  11.13; ppl: 596.78; xent:   6.39; 2399 src tok/s; 2411 tgt tok/s;    185 s elapsed
+Epoch  1,   400/ 2357; acc:  13.21; ppl: 461.06; xent:   6.13; 2447 src tok/s; 2485 tgt tok/s;    210 s elapsed
+Epoch  1,   450/ 2357; acc:  14.96; ppl: 387.62; xent:   5.96; 2443 src tok/s; 2453 tgt tok/s;    234 s elapsed
+Epoch  1,   500/ 2357; acc:  15.22; ppl: 370.73; xent:   5.92; 2394 src tok/s; 2412 tgt tok/s;    262 s elapsed
+Epoch  1,   550/ 2357; acc:  16.78; ppl: 329.04; xent:   5.80; 2496 src tok/s; 2521 tgt tok/s;    289 s elapsed
+Epoch  1,   600/ 2357; acc:  18.47; ppl: 280.48; xent:   5.64; 2476 src tok/s; 2495 tgt tok/s;    313 s elapsed
+Epoch  1,   650/ 2357; acc:  19.79; ppl: 254.82; xent:   5.54; 2469 src tok/s; 2494 tgt tok/s;    338 s elapsed
+Epoch  1,   700/ 2357; acc:  19.66; ppl: 244.79; xent:   5.50; 2463 src tok/s; 2484 tgt tok/s;    364 s elapsed
+Epoch  1,   750/ 2357; acc:  21.44; ppl: 220.03; xent:   5.39; 2541 src tok/s; 2556 tgt tok/s;    388 s elapsed
+Epoch  1,   800/ 2357; acc:  21.56; ppl: 210.11; xent:   5.35; 2474 src tok/s; 2486 tgt tok/s;    414 s elapsed
+Epoch  1,   850/ 2357; acc:  22.39; ppl: 189.91; xent:   5.25; 2487 src tok/s; 2506 tgt tok/s;    439 s elapsed
+Epoch  1,   900/ 2357; acc:  22.94; ppl: 187.42; xent:   5.23; 2528 src tok/s; 2555 tgt tok/s;    464 s elapsed
+Epoch  1,   950/ 2357; acc:  23.50; ppl: 180.55; xent:   5.20; 2502 src tok/s; 2502 tgt tok/s;    489 s elapsed
+Epoch  1,  1000/ 2357; acc:  24.08; ppl: 168.17; xent:   5.12; 2481 src tok/s; 2508 tgt tok/s;    515 s elapsed
+Epoch  1,  1050/ 2357; acc:  24.22; ppl: 163.96; xent:   5.10; 2467 src tok/s; 2491 tgt tok/s;    541 s elapsed
+Epoch  1,  1100/ 2357; acc:  25.05; ppl: 158.57; xent:   5.07; 2524 src tok/s; 2532 tgt tok/s;    566 s elapsed
+Epoch  1,  1150/ 2357; acc:  25.49; ppl: 150.19; xent:   5.01; 2485 src tok/s; 2514 tgt tok/s;    591 s elapsed
+Epoch  1,  1200/ 2357; acc:  25.66; ppl: 148.48; xent:   5.00; 2509 src tok/s; 2537 tgt tok/s;    617 s elapsed
+Epoch  1,  1250/ 2357; acc:  26.35; ppl: 138.97; xent:   4.93; 2432 src tok/s; 2470 tgt tok/s;    643 s elapsed
+Epoch  1,  1300/ 2357; acc:  27.37; ppl: 129.71; xent:   4.87; 2577 src tok/s; 2591 tgt tok/s;    667 s elapsed
+Epoch  1,  1350/ 2357; acc:  27.94; ppl: 120.30; xent:   4.79; 2579 src tok/s; 2624 tgt tok/s;    690 s elapsed
+Epoch  1,  1400/ 2357; acc:  27.57; ppl: 124.55; xent:   4.82; 2458 src tok/s; 2477 tgt tok/s;    718 s elapsed
+Epoch  1,  1450/ 2357; acc:  30.00; ppl: 108.06; xent:   4.68; 2546 src tok/s; 2553 tgt tok/s;    741 s elapsed
+Epoch  1,  1500/ 2357; acc:  29.30; ppl: 108.75; xent:   4.69; 2471 src tok/s; 2512 tgt tok/s;    768 s elapsed
+Epoch  1,  1550/ 2357; acc:  29.65; ppl: 105.58; xent:   4.66; 2530 src tok/s; 2564 tgt tok/s;    793 s elapsed
+Epoch  1,  1600/ 2357; acc:  31.13; ppl:  96.46; xent:   4.57; 2499 src tok/s; 2505 tgt tok/s;    818 s elapsed
+Epoch  1,  1650/ 2357; acc:  31.33; ppl:  93.27; xent:   4.54; 2502 src tok/s; 2547 tgt tok/s;    842 s elapsed
+Epoch  1,  1700/ 2357; acc:  31.11; ppl:  92.86; xent:   4.53; 2525 src tok/s; 2534 tgt tok/s;    868 s elapsed
+Epoch  1,  1750/ 2357; acc:  31.01; ppl:  93.12; xent:   4.53; 2456 src tok/s; 2474 tgt tok/s;    894 s elapsed
+Epoch  1,  1800/ 2357; acc:  33.10; ppl:  79.84; xent:   4.38; 2561 src tok/s; 2604 tgt tok/s;    918 s elapsed
+Epoch  1,  1850/ 2357; acc:  33.24; ppl:  80.32; xent:   4.39; 2563 src tok/s; 2564 tgt tok/s;    942 s elapsed
+Epoch  1,  1900/ 2357; acc:  32.93; ppl:  80.70; xent:   4.39; 2475 src tok/s; 2521 tgt tok/s;    968 s elapsed
+Epoch  1,  1950/ 2357; acc:  34.60; ppl:  72.59; xent:   4.28; 2563 src tok/s; 2570 tgt tok/s;    991 s elapsed
+Epoch  1,  2000/ 2357; acc:  33.35; ppl:  78.58; xent:   4.36; 2505 src tok/s; 2529 tgt tok/s;   1019 s elapsed
+Epoch  1,  2050/ 2357; acc:  34.72; ppl:  72.93; xent:   4.29; 2519 src tok/s; 2553 tgt tok/s;   1043 s elapsed
+Epoch  1,  2100/ 2357; acc:  35.01; ppl:  68.35; xent:   4.22; 2521 src tok/s; 2539 tgt tok/s;   1069 s elapsed
+Epoch  1,  2150/ 2357; acc:  36.08; ppl:  62.90; xent:   4.14; 2520 src tok/s; 2556 tgt tok/s;   1091 s elapsed
+Epoch  1,  2200/ 2357; acc:  35.24; ppl:  66.99; xent:   4.20; 2535 src tok/s; 2539 tgt tok/s;   1118 s elapsed
+Epoch  1,  2250/ 2357; acc:  36.37; ppl:  60.80; xent:   4.11; 2522 src tok/s; 2561 tgt tok/s;   1143 s elapsed
+Epoch  1,  2300/ 2357; acc:  35.87; ppl:  63.02; xent:   4.14; 2512 src tok/s; 2521 tgt tok/s;   1169 s elapsed
+Epoch  1,  2350/ 2357; acc:  37.08; ppl:  57.73; xent:   4.06; 2362 src tok/s; 2374 tgt tok/s;   1195 s elapsed
+Train perplexity: 212.238
+Train accuracy: 24.3807
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 273.407
+Validation accuracy: 25.2691
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch  2,    50/ 2357; acc:  38.20; ppl:  53.34; xent:   3.98; 2543 src tok/s; 2559 tgt tok/s;     24 s elapsed
+Epoch  2,   100/ 2357; acc:  37.01; ppl:  58.62; xent:   4.07; 2432 src tok/s; 2468 tgt tok/s;     51 s elapsed
+Epoch  2,   150/ 2357; acc:  39.17; ppl:  49.41; xent:   3.90; 2594 src tok/s; 2620 tgt tok/s;     73 s elapsed
+Epoch  2,   200/ 2357; acc:  37.21; ppl:  57.44; xent:   4.05; 2410 src tok/s; 2452 tgt tok/s;    102 s elapsed
+Epoch  2,   250/ 2357; acc:  38.10; ppl:  54.15; xent:   3.99; 2455 src tok/s; 2473 tgt tok/s;    129 s elapsed
+Epoch  2,   300/ 2357; acc:  39.89; ppl:  46.95; xent:   3.85; 2514 src tok/s; 2535 tgt tok/s;    152 s elapsed
+Epoch  2,   350/ 2357; acc:  39.28; ppl:  48.96; xent:   3.89; 2467 src tok/s; 2480 tgt tok/s;    179 s elapsed
+Epoch  2,   400/ 2357; acc:  39.90; ppl:  46.25; xent:   3.83; 2540 src tok/s; 2579 tgt tok/s;    203 s elapsed
+Epoch  2,   450/ 2357; acc:  41.01; ppl:  43.28; xent:   3.77; 2523 src tok/s; 2533 tgt tok/s;    226 s elapsed
+Epoch  2,   500/ 2357; acc:  39.75; ppl:  46.38; xent:   3.84; 2417 src tok/s; 2435 tgt tok/s;    254 s elapsed
+Epoch  2,   550/ 2357; acc:  40.01; ppl:  44.72; xent:   3.80; 2520 src tok/s; 2546 tgt tok/s;    280 s elapsed
+Epoch  2,   600/ 2357; acc:  41.94; ppl:  39.76; xent:   3.68; 2450 src tok/s; 2469 tgt tok/s;    305 s elapsed
+Epoch  2,   650/ 2357; acc:  41.13; ppl:  41.71; xent:   3.73; 2449 src tok/s; 2473 tgt tok/s;    330 s elapsed
+Epoch  2,   700/ 2357; acc:  41.47; ppl:  40.14; xent:   3.69; 2458 src tok/s; 2479 tgt tok/s;    356 s elapsed
+Epoch  2,   750/ 2357; acc:  42.06; ppl:  39.15; xent:   3.67; 2526 src tok/s; 2542 tgt tok/s;    380 s elapsed
+Epoch  2,   800/ 2357; acc:  42.01; ppl:  38.44; xent:   3.65; 2478 src tok/s; 2491 tgt tok/s;    406 s elapsed
+Epoch  2,   850/ 2357; acc:  42.13; ppl:  37.66; xent:   3.63; 2475 src tok/s; 2494 tgt tok/s;    432 s elapsed
+Epoch  2,   900/ 2357; acc:  42.73; ppl:  36.40; xent:   3.59; 2526 src tok/s; 2552 tgt tok/s;    457 s elapsed
+Epoch  2,   950/ 2357; acc:  42.95; ppl:  36.43; xent:   3.60; 2465 src tok/s; 2465 tgt tok/s;    482 s elapsed
+Epoch  2,  1000/ 2357; acc:  42.58; ppl:  36.07; xent:   3.59; 2441 src tok/s; 2468 tgt tok/s;    508 s elapsed
+Epoch  2,  1050/ 2357; acc:  43.18; ppl:  34.70; xent:   3.55; 2456 src tok/s; 2480 tgt tok/s;    534 s elapsed
+Epoch  2,  1100/ 2357; acc:  43.00; ppl:  35.14; xent:   3.56; 2473 src tok/s; 2481 tgt tok/s;    560 s elapsed
+Epoch  2,  1150/ 2357; acc:  43.19; ppl:  34.75; xent:   3.55; 2440 src tok/s; 2469 tgt tok/s;    585 s elapsed
+Epoch  2,  1200/ 2357; acc:  43.34; ppl:  33.96; xent:   3.53; 2466 src tok/s; 2493 tgt tok/s;    611 s elapsed
+Epoch  2,  1250/ 2357; acc:  43.14; ppl:  34.72; xent:   3.55; 2403 src tok/s; 2441 tgt tok/s;    638 s elapsed
+Epoch  2,  1300/ 2357; acc:  44.27; ppl:  32.12; xent:   3.47; 2527 src tok/s; 2541 tgt tok/s;    663 s elapsed
+Epoch  2,  1350/ 2357; acc:  44.09; ppl:  31.35; xent:   3.45; 2548 src tok/s; 2592 tgt tok/s;    686 s elapsed
+Epoch  2,  1400/ 2357; acc:  44.01; ppl:  32.18; xent:   3.47; 2438 src tok/s; 2457 tgt tok/s;    714 s elapsed
+Epoch  2,  1450/ 2357; acc:  45.74; ppl:  28.90; xent:   3.36; 2500 src tok/s; 2506 tgt tok/s;    738 s elapsed
+Epoch  2,  1500/ 2357; acc:  44.44; ppl:  30.69; xent:   3.42; 2407 src tok/s; 2447 tgt tok/s;    765 s elapsed
+Epoch  2,  1550/ 2357; acc:  44.82; ppl:  29.97; xent:   3.40; 2441 src tok/s; 2474 tgt tok/s;    791 s elapsed
+Epoch  2,  1600/ 2357; acc:  45.26; ppl:  29.02; xent:   3.37; 2446 src tok/s; 2452 tgt tok/s;    816 s elapsed
+Epoch  2,  1650/ 2357; acc:  45.50; ppl:  28.40; xent:   3.35; 2438 src tok/s; 2482 tgt tok/s;    841 s elapsed
+Epoch  2,  1700/ 2357; acc:  44.84; ppl:  29.11; xent:   3.37; 2439 src tok/s; 2449 tgt tok/s;    868 s elapsed
+Epoch  2,  1750/ 2357; acc:  44.64; ppl:  29.79; xent:   3.39; 2402 src tok/s; 2420 tgt tok/s;    895 s elapsed
+Epoch  2,  1800/ 2357; acc:  46.10; ppl:  26.99; xent:   3.30; 2490 src tok/s; 2531 tgt tok/s;    919 s elapsed
+Epoch  2,  1850/ 2357; acc:  46.12; ppl:  26.97; xent:   3.29; 2493 src tok/s; 2494 tgt tok/s;    944 s elapsed
+Epoch  2,  1900/ 2357; acc:  45.48; ppl:  27.78; xent:   3.32; 2411 src tok/s; 2456 tgt tok/s;    971 s elapsed
+Epoch  2,  1950/ 2357; acc:  46.75; ppl:  25.80; xent:   3.25; 2460 src tok/s; 2466 tgt tok/s;    995 s elapsed
+Epoch  2,  2000/ 2357; acc:  45.32; ppl:  27.91; xent:   3.33; 2423 src tok/s; 2447 tgt tok/s;   1023 s elapsed
+Epoch  2,  2050/ 2357; acc:  46.34; ppl:  26.72; xent:   3.29; 2435 src tok/s; 2467 tgt tok/s;   1049 s elapsed
+Epoch  2,  2100/ 2357; acc:  46.15; ppl:  25.62; xent:   3.24; 2468 src tok/s; 2486 tgt tok/s;   1075 s elapsed
+Epoch  2,  2150/ 2357; acc:  47.49; ppl:  24.06; xent:   3.18; 2449 src tok/s; 2485 tgt tok/s;   1098 s elapsed
+Epoch  2,  2200/ 2357; acc:  46.22; ppl:  26.07; xent:   3.26; 2479 src tok/s; 2483 tgt tok/s;   1126 s elapsed
+Epoch  2,  2250/ 2357; acc:  47.20; ppl:  24.49; xent:   3.20; 2451 src tok/s; 2489 tgt tok/s;   1151 s elapsed
+Epoch  2,  2300/ 2357; acc:  46.23; ppl:  25.83; xent:   3.25; 2450 src tok/s; 2458 tgt tok/s;   1177 s elapsed
+Epoch  2,  2350/ 2357; acc:  47.41; ppl:  23.77; xent:   3.17; 2289 src tok/s; 2301 tgt tok/s;   1205 s elapsed
+Train perplexity: 34.6727
+Train accuracy: 43.1619
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 138.838
+Validation accuracy: 32.3027
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch  3,    50/ 2357; acc:  47.95; ppl:  22.60; xent:   3.12; 2490 src tok/s; 2505 tgt tok/s;     25 s elapsed
+Epoch  3,   100/ 2357; acc:  46.36; ppl:  25.52; xent:   3.24; 2377 src tok/s; 2412 tgt tok/s;     52 s elapsed
+Epoch  3,   150/ 2357; acc:  48.76; ppl:  21.50; xent:   3.07; 2528 src tok/s; 2553 tgt tok/s;     75 s elapsed
+Epoch  3,   200/ 2357; acc:  45.93; ppl:  26.21; xent:   3.27; 2347 src tok/s; 2389 tgt tok/s;    104 s elapsed
+Epoch  3,   250/ 2357; acc:  47.24; ppl:  24.44; xent:   3.20; 2430 src tok/s; 2448 tgt tok/s;    132 s elapsed
+Epoch  3,   300/ 2357; acc:  48.41; ppl:  21.97; xent:   3.09; 2487 src tok/s; 2507 tgt tok/s;    156 s elapsed
+Epoch  3,   350/ 2357; acc:  47.82; ppl:  22.86; xent:   3.13; 2445 src tok/s; 2458 tgt tok/s;    182 s elapsed
+Epoch  3,   400/ 2357; acc:  48.04; ppl:  22.22; xent:   3.10; 2490 src tok/s; 2528 tgt tok/s;    207 s elapsed
+Epoch  3,   450/ 2357; acc:  49.34; ppl:  20.77; xent:   3.03; 2485 src tok/s; 2495 tgt tok/s;    230 s elapsed
+Epoch  3,   500/ 2357; acc:  47.68; ppl:  22.71; xent:   3.12; 2403 src tok/s; 2422 tgt tok/s;    259 s elapsed
+Epoch  3,   550/ 2357; acc:  48.04; ppl:  22.03; xent:   3.09; 2472 src tok/s; 2497 tgt tok/s;    285 s elapsed
+Epoch  3,   600/ 2357; acc:  49.43; ppl:  20.08; xent:   3.00; 2464 src tok/s; 2483 tgt tok/s;    309 s elapsed
+Epoch  3,   650/ 2357; acc:  48.80; ppl:  21.29; xent:   3.06; 2439 src tok/s; 2464 tgt tok/s;    335 s elapsed
+Epoch  3,   700/ 2357; acc:  49.11; ppl:  20.56; xent:   3.02; 2443 src tok/s; 2464 tgt tok/s;    361 s elapsed
+Epoch  3,   750/ 2357; acc:  49.06; ppl:  20.63; xent:   3.03; 2510 src tok/s; 2525 tgt tok/s;    385 s elapsed
+Epoch  3,   800/ 2357; acc:  49.07; ppl:  20.36; xent:   3.01; 2395 src tok/s; 2407 tgt tok/s;    412 s elapsed
+Epoch  3,   850/ 2357; acc:  48.85; ppl:  20.43; xent:   3.02; 2452 src tok/s; 2471 tgt tok/s;    438 s elapsed
+Epoch  3,   900/ 2357; acc:  49.56; ppl:  19.63; xent:   2.98; 2498 src tok/s; 2525 tgt tok/s;    463 s elapsed
+Epoch  3,   950/ 2357; acc:  49.59; ppl:  19.86; xent:   2.99; 2446 src tok/s; 2446 tgt tok/s;    489 s elapsed
+Epoch  3,  1000/ 2357; acc:  49.16; ppl:  19.90; xent:   2.99; 2427 src tok/s; 2454 tgt tok/s;    515 s elapsed
+Epoch  3,  1050/ 2357; acc:  49.60; ppl:  19.36; xent:   2.96; 2405 src tok/s; 2430 tgt tok/s;    541 s elapsed
+Epoch  3,  1100/ 2357; acc:  49.59; ppl:  19.71; xent:   2.98; 2469 src tok/s; 2477 tgt tok/s;    567 s elapsed
+Epoch  3,  1150/ 2357; acc:  49.42; ppl:  19.72; xent:   2.98; 2422 src tok/s; 2450 tgt tok/s;    593 s elapsed
+Epoch  3,  1200/ 2357; acc:  49.36; ppl:  19.58; xent:   2.97; 2444 src tok/s; 2471 tgt tok/s;    619 s elapsed
+Epoch  3,  1250/ 2357; acc:  49.53; ppl:  20.04; xent:   3.00; 2384 src tok/s; 2422 tgt tok/s;    646 s elapsed
+Epoch  3,  1300/ 2357; acc:  50.45; ppl:  18.49; xent:   2.92; 2524 src tok/s; 2538 tgt tok/s;    671 s elapsed
+Epoch  3,  1350/ 2357; acc:  50.00; ppl:  18.45; xent:   2.92; 2494 src tok/s; 2537 tgt tok/s;    695 s elapsed
+Epoch  3,  1400/ 2357; acc:  49.87; ppl:  18.91; xent:   2.94; 2391 src tok/s; 2410 tgt tok/s;    723 s elapsed
+Epoch  3,  1450/ 2357; acc:  51.45; ppl:  17.42; xent:   2.86; 2483 src tok/s; 2489 tgt tok/s;    747 s elapsed
+Epoch  3,  1500/ 2357; acc:  49.93; ppl:  18.66; xent:   2.93; 2380 src tok/s; 2419 tgt tok/s;    774 s elapsed
+Epoch  3,  1550/ 2357; acc:  50.22; ppl:  18.24; xent:   2.90; 2446 src tok/s; 2478 tgt tok/s;    801 s elapsed
+Epoch  3,  1600/ 2357; acc:  50.77; ppl:  17.65; xent:   2.87; 2468 src tok/s; 2474 tgt tok/s;    825 s elapsed
+Epoch  3,  1650/ 2357; acc:  50.95; ppl:  17.35; xent:   2.85; 2412 src tok/s; 2456 tgt tok/s;    851 s elapsed
+Epoch  3,  1700/ 2357; acc:  50.18; ppl:  18.13; xent:   2.90; 2444 src tok/s; 2453 tgt tok/s;    878 s elapsed
+Epoch  3,  1750/ 2357; acc:  49.99; ppl:  18.52; xent:   2.92; 2397 src tok/s; 2414 tgt tok/s;    905 s elapsed
+Epoch  3,  1800/ 2357; acc:  51.23; ppl:  16.95; xent:   2.83; 2462 src tok/s; 2503 tgt tok/s;    929 s elapsed
+Epoch  3,  1850/ 2357; acc:  51.13; ppl:  16.88; xent:   2.83; 2468 src tok/s; 2468 tgt tok/s;    954 s elapsed
+Epoch  3,  1900/ 2357; acc:  50.55; ppl:  17.66; xent:   2.87; 2394 src tok/s; 2439 tgt tok/s;    981 s elapsed
+Epoch  3,  1950/ 2357; acc:  51.44; ppl:  16.50; xent:   2.80; 2491 src tok/s; 2497 tgt tok/s;   1005 s elapsed
+Epoch  3,  2000/ 2357; acc:  50.41; ppl:  17.84; xent:   2.88; 2382 src tok/s; 2405 tgt tok/s;   1034 s elapsed
+Epoch  3,  2050/ 2357; acc:  50.73; ppl:  17.56; xent:   2.87; 2431 src tok/s; 2464 tgt tok/s;   1059 s elapsed
+Epoch  3,  2100/ 2357; acc:  50.82; ppl:  16.82; xent:   2.82; 2453 src tok/s; 2471 tgt tok/s;   1085 s elapsed
+Epoch  3,  2150/ 2357; acc:  52.15; ppl:  15.67; xent:   2.75; 2407 src tok/s; 2442 tgt tok/s;   1109 s elapsed
+Epoch  3,  2200/ 2357; acc:  50.66; ppl:  17.32; xent:   2.85; 2451 src tok/s; 2455 tgt tok/s;   1137 s elapsed
+Epoch  3,  2250/ 2357; acc:  51.31; ppl:  16.47; xent:   2.80; 2444 src tok/s; 2482 tgt tok/s;   1163 s elapsed
+Epoch  3,  2300/ 2357; acc:  50.78; ppl:  17.29; xent:   2.85; 2440 src tok/s; 2448 tgt tok/s;   1189 s elapsed
+Epoch  3,  2350/ 2357; acc:  51.68; ppl:  15.85; xent:   2.76; 2287 src tok/s; 2300 tgt tok/s;   1216 s elapsed
+Train perplexity: 19.4104
+Train accuracy: 49.6164
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 104.741
+Validation accuracy: 35.7946
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch  4,    50/ 2357; acc:  52.30; ppl:  15.15; xent:   2.72; 2486 src tok/s; 2501 tgt tok/s;     25 s elapsed
+Epoch  4,   100/ 2357; acc:  50.62; ppl:  17.16; xent:   2.84; 2367 src tok/s; 2402 tgt tok/s;     52 s elapsed
+Epoch  4,   150/ 2357; acc:  52.79; ppl:  14.59; xent:   2.68; 2552 src tok/s; 2577 tgt tok/s;     75 s elapsed
+Epoch  4,   200/ 2357; acc:  50.04; ppl:  17.80; xent:   2.88; 2346 src tok/s; 2388 tgt tok/s;    104 s elapsed
+Epoch  4,   250/ 2357; acc:  51.21; ppl:  16.84; xent:   2.82; 2409 src tok/s; 2426 tgt tok/s;    132 s elapsed
+Epoch  4,   300/ 2357; acc:  52.67; ppl:  15.13; xent:   2.72; 2453 src tok/s; 2473 tgt tok/s;    156 s elapsed
+Epoch  4,   350/ 2357; acc:  52.03; ppl:  15.81; xent:   2.76; 2449 src tok/s; 2462 tgt tok/s;    183 s elapsed
+Epoch  4,   400/ 2357; acc:  51.91; ppl:  15.42; xent:   2.74; 2482 src tok/s; 2520 tgt tok/s;    207 s elapsed
+Epoch  4,   450/ 2357; acc:  53.01; ppl:  14.51; xent:   2.68; 2453 src tok/s; 2463 tgt tok/s;    231 s elapsed
+Epoch  4,   500/ 2357; acc:  51.77; ppl:  15.84; xent:   2.76; 2388 src tok/s; 2406 tgt tok/s;    260 s elapsed
+Epoch  4,   550/ 2357; acc:  51.81; ppl:  15.49; xent:   2.74; 2474 src tok/s; 2499 tgt tok/s;    286 s elapsed
+Epoch  4,   600/ 2357; acc:  53.36; ppl:  14.30; xent:   2.66; 2449 src tok/s; 2468 tgt tok/s;    310 s elapsed
+Epoch  4,   650/ 2357; acc:  52.52; ppl:  15.14; xent:   2.72; 2416 src tok/s; 2440 tgt tok/s;    336 s elapsed
+Epoch  4,   700/ 2357; acc:  52.30; ppl:  14.98; xent:   2.71; 2423 src tok/s; 2444 tgt tok/s;    362 s elapsed
+Epoch  4,   750/ 2357; acc:  52.77; ppl:  14.71; xent:   2.69; 2486 src tok/s; 2501 tgt tok/s;    387 s elapsed
+Epoch  4,   800/ 2357; acc:  52.67; ppl:  14.67; xent:   2.69; 2422 src tok/s; 2434 tgt tok/s;    414 s elapsed
+Epoch  4,   850/ 2357; acc:  52.50; ppl:  14.81; xent:   2.70; 2461 src tok/s; 2479 tgt tok/s;    439 s elapsed
+Epoch  4,   900/ 2357; acc:  53.08; ppl:  14.15; xent:   2.65; 2492 src tok/s; 2518 tgt tok/s;    465 s elapsed
+Epoch  4,   950/ 2357; acc:  53.27; ppl:  14.44; xent:   2.67; 2436 src tok/s; 2436 tgt tok/s;    490 s elapsed
+Epoch  4,  1000/ 2357; acc:  52.66; ppl:  14.63; xent:   2.68; 2408 src tok/s; 2435 tgt tok/s;    517 s elapsed
+Epoch  4,  1050/ 2357; acc:  53.13; ppl:  14.03; xent:   2.64; 2401 src tok/s; 2425 tgt tok/s;    543 s elapsed
+Epoch  4,  1100/ 2357; acc:  52.96; ppl:  14.49; xent:   2.67; 2446 src tok/s; 2453 tgt tok/s;    569 s elapsed
+Epoch  4,  1150/ 2357; acc:  52.85; ppl:  14.58; xent:   2.68; 2389 src tok/s; 2416 tgt tok/s;    595 s elapsed
+Epoch  4,  1200/ 2357; acc:  52.85; ppl:  14.47; xent:   2.67; 2433 src tok/s; 2460 tgt tok/s;    622 s elapsed
+Epoch  4,  1250/ 2357; acc:  52.40; ppl:  15.03; xent:   2.71; 2366 src tok/s; 2404 tgt tok/s;    649 s elapsed
+Epoch  4,  1300/ 2357; acc:  53.58; ppl:  13.77; xent:   2.62; 2484 src tok/s; 2498 tgt tok/s;    674 s elapsed
+Epoch  4,  1350/ 2357; acc:  53.24; ppl:  13.93; xent:   2.63; 2502 src tok/s; 2546 tgt tok/s;    698 s elapsed
+Epoch  4,  1400/ 2357; acc:  53.16; ppl:  14.20; xent:   2.65; 2405 src tok/s; 2423 tgt tok/s;    726 s elapsed
+Epoch  4,  1450/ 2357; acc:  54.47; ppl:  13.08; xent:   2.57; 2479 src tok/s; 2485 tgt tok/s;    750 s elapsed
+Epoch  4,  1500/ 2357; acc:  52.89; ppl:  14.12; xent:   2.65; 2383 src tok/s; 2422 tgt tok/s;    777 s elapsed
+Epoch  4,  1550/ 2357; acc:  53.16; ppl:  13.84; xent:   2.63; 2433 src tok/s; 2465 tgt tok/s;    804 s elapsed
+Epoch  4,  1600/ 2357; acc:  53.82; ppl:  13.41; xent:   2.60; 2438 src tok/s; 2444 tgt tok/s;    829 s elapsed
+Epoch  4,  1650/ 2357; acc:  54.15; ppl:  13.27; xent:   2.59; 2410 src tok/s; 2453 tgt tok/s;    854 s elapsed
+Epoch  4,  1700/ 2357; acc:  53.24; ppl:  13.77; xent:   2.62; 2418 src tok/s; 2427 tgt tok/s;    881 s elapsed
+Epoch  4,  1750/ 2357; acc:  53.16; ppl:  14.10; xent:   2.65; 2405 src tok/s; 2423 tgt tok/s;    908 s elapsed
+Epoch  4,  1800/ 2357; acc:  54.12; ppl:  13.04; xent:   2.57; 2473 src tok/s; 2514 tgt tok/s;    932 s elapsed
+Epoch  4,  1850/ 2357; acc:  54.06; ppl:  13.04; xent:   2.57; 2478 src tok/s; 2478 tgt tok/s;    958 s elapsed
+Epoch  4,  1900/ 2357; acc:  53.43; ppl:  13.76; xent:   2.62; 2412 src tok/s; 2457 tgt tok/s;    985 s elapsed
+Epoch  4,  1950/ 2357; acc:  54.44; ppl:  12.77; xent:   2.55; 2478 src tok/s; 2484 tgt tok/s;   1008 s elapsed
+Epoch  4,  2000/ 2357; acc:  53.06; ppl:  13.85; xent:   2.63; 2403 src tok/s; 2426 tgt tok/s;   1037 s elapsed
+Epoch  4,  2050/ 2357; acc:  53.62; ppl:  13.61; xent:   2.61; 2442 src tok/s; 2475 tgt tok/s;   1063 s elapsed
+Epoch  4,  2100/ 2357; acc:  53.65; ppl:  13.09; xent:   2.57; 2466 src tok/s; 2485 tgt tok/s;   1088 s elapsed
+Epoch  4,  2150/ 2357; acc:  54.76; ppl:  12.28; xent:   2.51; 2444 src tok/s; 2480 tgt tok/s;   1112 s elapsed
+Epoch  4,  2200/ 2357; acc:  53.34; ppl:  13.68; xent:   2.62; 2461 src tok/s; 2465 tgt tok/s;   1140 s elapsed
+Epoch  4,  2250/ 2357; acc:  54.12; ppl:  12.87; xent:   2.55; 2460 src tok/s; 2499 tgt tok/s;   1165 s elapsed
+Epoch  4,  2300/ 2357; acc:  53.34; ppl:  13.49; xent:   2.60; 2414 src tok/s; 2421 tgt tok/s;   1191 s elapsed
+Epoch  4,  2350/ 2357; acc:  54.46; ppl:  12.50; xent:   2.53; 2268 src tok/s; 2280 tgt tok/s;   1219 s elapsed
+Train perplexity: 14.2996
+Train accuracy: 52.9827
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 90.4006
+Validation accuracy: 37.6623
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch  5,    50/ 2357; acc:  54.91; ppl:  12.06; xent:   2.49; 2499 src tok/s; 2514 tgt tok/s;     24 s elapsed
+Epoch  5,   100/ 2357; acc:  53.22; ppl:  13.71; xent:   2.62; 2355 src tok/s; 2390 tgt tok/s;     52 s elapsed
+Epoch  5,   150/ 2357; acc:  55.30; ppl:  11.59; xent:   2.45; 2505 src tok/s; 2529 tgt tok/s;     75 s elapsed
+Epoch  5,   200/ 2357; acc:  52.52; ppl:  14.36; xent:   2.66; 2322 src tok/s; 2364 tgt tok/s;    105 s elapsed
+Epoch  5,   250/ 2357; acc:  53.79; ppl:  13.40; xent:   2.60; 2424 src tok/s; 2442 tgt tok/s;    133 s elapsed
+Epoch  5,   300/ 2357; acc:  55.01; ppl:  12.12; xent:   2.49; 2467 src tok/s; 2487 tgt tok/s;    156 s elapsed
+Epoch  5,   350/ 2357; acc:  54.48; ppl:  12.51; xent:   2.53; 2441 src tok/s; 2453 tgt tok/s;    183 s elapsed
+Epoch  5,   400/ 2357; acc:  54.56; ppl:  12.31; xent:   2.51; 2491 src tok/s; 2529 tgt tok/s;    208 s elapsed
+Epoch  5,   450/ 2357; acc:  55.69; ppl:  11.57; xent:   2.45; 2454 src tok/s; 2463 tgt tok/s;    231 s elapsed
+Epoch  5,   500/ 2357; acc:  54.21; ppl:  12.68; xent:   2.54; 2367 src tok/s; 2385 tgt tok/s;    260 s elapsed
+Epoch  5,   550/ 2357; acc:  54.45; ppl:  12.43; xent:   2.52; 2462 src tok/s; 2487 tgt tok/s;    287 s elapsed
+Epoch  5,   600/ 2357; acc:  55.53; ppl:  11.59; xent:   2.45; 2422 src tok/s; 2440 tgt tok/s;    312 s elapsed
+Epoch  5,   650/ 2357; acc:  54.99; ppl:  12.11; xent:   2.49; 2411 src tok/s; 2435 tgt tok/s;    337 s elapsed
+Epoch  5,   700/ 2357; acc:  54.89; ppl:  12.14; xent:   2.50; 2420 src tok/s; 2441 tgt tok/s;    364 s elapsed
+Epoch  5,   750/ 2357; acc:  55.29; ppl:  11.91; xent:   2.48; 2487 src tok/s; 2502 tgt tok/s;    389 s elapsed
+Epoch  5,   800/ 2357; acc:  54.97; ppl:  11.94; xent:   2.48; 2378 src tok/s; 2391 tgt tok/s;    415 s elapsed
+Epoch  5,   850/ 2357; acc:  54.69; ppl:  12.04; xent:   2.49; 2417 src tok/s; 2435 tgt tok/s;    441 s elapsed
+Epoch  5,   900/ 2357; acc:  55.44; ppl:  11.66; xent:   2.46; 2486 src tok/s; 2512 tgt tok/s;    467 s elapsed
+Epoch  5,   950/ 2357; acc:  55.59; ppl:  11.67; xent:   2.46; 2462 src tok/s; 2463 tgt tok/s;    492 s elapsed
+Epoch  5,  1000/ 2357; acc:  55.10; ppl:  11.85; xent:   2.47; 2421 src tok/s; 2448 tgt tok/s;    519 s elapsed
+Epoch  5,  1050/ 2357; acc:  55.41; ppl:  11.49; xent:   2.44; 2417 src tok/s; 2441 tgt tok/s;    545 s elapsed
+Epoch  5,  1100/ 2357; acc:  55.49; ppl:  11.75; xent:   2.46; 2443 src tok/s; 2450 tgt tok/s;    571 s elapsed
+Epoch  5,  1150/ 2357; acc:  55.11; ppl:  11.89; xent:   2.48; 2418 src tok/s; 2446 tgt tok/s;    597 s elapsed
+Epoch  5,  1200/ 2357; acc:  55.17; ppl:  11.92; xent:   2.48; 2401 src tok/s; 2427 tgt tok/s;    623 s elapsed
+Epoch  5,  1250/ 2357; acc:  54.46; ppl:  12.35; xent:   2.51; 2353 src tok/s; 2391 tgt tok/s;    651 s elapsed
+Epoch  5,  1300/ 2357; acc:  55.90; ppl:  11.34; xent:   2.43; 2509 src tok/s; 2523 tgt tok/s;    675 s elapsed
+Epoch  5,  1350/ 2357; acc:  55.43; ppl:  11.50; xent:   2.44; 2485 src tok/s; 2528 tgt tok/s;    699 s elapsed
+Epoch  5,  1400/ 2357; acc:  55.43; ppl:  11.69; xent:   2.46; 2405 src tok/s; 2423 tgt tok/s;    727 s elapsed
+Epoch  5,  1450/ 2357; acc:  56.62; ppl:  10.91; xent:   2.39; 2479 src tok/s; 2486 tgt tok/s;    752 s elapsed
+Epoch  5,  1500/ 2357; acc:  54.79; ppl:  11.77; xent:   2.47; 2364 src tok/s; 2403 tgt tok/s;    779 s elapsed
+Epoch  5,  1550/ 2357; acc:  55.53; ppl:  11.37; xent:   2.43; 2437 src tok/s; 2469 tgt tok/s;    806 s elapsed
+Epoch  5,  1600/ 2357; acc:  55.85; ppl:  11.18; xent:   2.41; 2448 src tok/s; 2454 tgt tok/s;    831 s elapsed
+Epoch  5,  1650/ 2357; acc:  56.15; ppl:  10.97; xent:   2.40; 2402 src tok/s; 2445 tgt tok/s;    856 s elapsed
+Epoch  5,  1700/ 2357; acc:  55.26; ppl:  11.52; xent:   2.44; 2433 src tok/s; 2443 tgt tok/s;    883 s elapsed
+Epoch  5,  1750/ 2357; acc:  55.11; ppl:  11.84; xent:   2.47; 2386 src tok/s; 2404 tgt tok/s;    910 s elapsed
+Epoch  5,  1800/ 2357; acc:  56.17; ppl:  10.88; xent:   2.39; 2427 src tok/s; 2468 tgt tok/s;    935 s elapsed
+Epoch  5,  1850/ 2357; acc:  56.02; ppl:  10.99; xent:   2.40; 2455 src tok/s; 2456 tgt tok/s;    960 s elapsed
+Epoch  5,  1900/ 2357; acc:  55.47; ppl:  11.53; xent:   2.44; 2395 src tok/s; 2439 tgt tok/s;    987 s elapsed
+Epoch  5,  1950/ 2357; acc:  56.55; ppl:  10.67; xent:   2.37; 2467 src tok/s; 2473 tgt tok/s;   1011 s elapsed
+Epoch  5,  2000/ 2357; acc:  55.22; ppl:  11.54; xent:   2.45; 2393 src tok/s; 2416 tgt tok/s;   1040 s elapsed
+Epoch  5,  2050/ 2357; acc:  55.51; ppl:  11.38; xent:   2.43; 2401 src tok/s; 2433 tgt tok/s;   1066 s elapsed
+Epoch  5,  2100/ 2357; acc:  55.93; ppl:  10.96; xent:   2.39; 2440 src tok/s; 2458 tgt tok/s;   1092 s elapsed
+Epoch  5,  2150/ 2357; acc:  56.68; ppl:  10.35; xent:   2.34; 2362 src tok/s; 2396 tgt tok/s;   1116 s elapsed
+Epoch  5,  2200/ 2357; acc:  55.20; ppl:  11.48; xent:   2.44; 2444 src tok/s; 2448 tgt tok/s;   1144 s elapsed
+Epoch  5,  2250/ 2357; acc:  55.99; ppl:  10.86; xent:   2.39; 2418 src tok/s; 2456 tgt tok/s;   1170 s elapsed
+Epoch  5,  2300/ 2357; acc:  55.06; ppl:  11.41; xent:   2.43; 2400 src tok/s; 2408 tgt tok/s;   1197 s elapsed
+Epoch  5,  2350/ 2357; acc:  56.11; ppl:  10.61; xent:   2.36; 2286 src tok/s; 2298 tgt tok/s;   1224 s elapsed
+Train perplexity: 11.7271
+Train accuracy: 55.2272
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 84.3709
+Validation accuracy: 38.982
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch  6,    50/ 2357; acc:  56.63; ppl:  10.23; xent:   2.33; 2512 src tok/s; 2527 tgt tok/s;     24 s elapsed
+Epoch  6,   100/ 2357; acc:  55.00; ppl:  11.58; xent:   2.45; 2358 src tok/s; 2393 tgt tok/s;     52 s elapsed
+Epoch  6,   150/ 2357; acc:  57.21; ppl:   9.84; xent:   2.29; 2530 src tok/s; 2555 tgt tok/s;     75 s elapsed
+Epoch  6,   200/ 2357; acc:  54.35; ppl:  12.12; xent:   2.50; 2336 src tok/s; 2378 tgt tok/s;    105 s elapsed
+Epoch  6,   250/ 2357; acc:  55.56; ppl:  11.36; xent:   2.43; 2415 src tok/s; 2433 tgt tok/s;    132 s elapsed
+Epoch  6,   300/ 2357; acc:  56.95; ppl:  10.30; xent:   2.33; 2477 src tok/s; 2498 tgt tok/s;    156 s elapsed
+Epoch  6,   350/ 2357; acc:  56.48; ppl:  10.71; xent:   2.37; 2405 src tok/s; 2417 tgt tok/s;    183 s elapsed
+Epoch  6,   400/ 2357; acc:  56.27; ppl:  10.50; xent:   2.35; 2483 src tok/s; 2521 tgt tok/s;    208 s elapsed
+Epoch  6,   450/ 2357; acc:  57.27; ppl:   9.88; xent:   2.29; 2440 src tok/s; 2449 tgt tok/s;    232 s elapsed
+Epoch  6,   500/ 2357; acc:  55.88; ppl:  10.95; xent:   2.39; 2357 src tok/s; 2375 tgt tok/s;    260 s elapsed
+Epoch  6,   550/ 2357; acc:  56.39; ppl:  10.62; xent:   2.36; 2468 src tok/s; 2493 tgt tok/s;    287 s elapsed
+Epoch  6,   600/ 2357; acc:  57.16; ppl:   9.92; xent:   2.29; 2402 src tok/s; 2420 tgt tok/s;    312 s elapsed
+Epoch  6,   650/ 2357; acc:  56.73; ppl:  10.37; xent:   2.34; 2424 src tok/s; 2448 tgt tok/s;    337 s elapsed
+Epoch  6,   700/ 2357; acc:  56.43; ppl:  10.50; xent:   2.35; 2420 src tok/s; 2441 tgt tok/s;    364 s elapsed
+Epoch  6,   750/ 2357; acc:  57.06; ppl:  10.24; xent:   2.33; 2484 src tok/s; 2500 tgt tok/s;    389 s elapsed
+Epoch  6,   800/ 2357; acc:  56.63; ppl:  10.27; xent:   2.33; 2398 src tok/s; 2410 tgt tok/s;    415 s elapsed
+Epoch  6,   850/ 2357; acc:  56.47; ppl:  10.39; xent:   2.34; 2449 src tok/s; 2467 tgt tok/s;    441 s elapsed
+Epoch  6,   900/ 2357; acc:  57.01; ppl:   9.99; xent:   2.30; 2453 src tok/s; 2479 tgt tok/s;    467 s elapsed
+Epoch  6,   950/ 2357; acc:  57.21; ppl:  10.09; xent:   2.31; 2457 src tok/s; 2457 tgt tok/s;    492 s elapsed
+Epoch  6,  1000/ 2357; acc:  56.74; ppl:  10.29; xent:   2.33; 2429 src tok/s; 2456 tgt tok/s;    519 s elapsed
+Epoch  6,  1050/ 2357; acc:  57.13; ppl:   9.90; xent:   2.29; 2417 src tok/s; 2441 tgt tok/s;    545 s elapsed
+Epoch  6,  1100/ 2357; acc:  56.85; ppl:  10.19; xent:   2.32; 2468 src tok/s; 2476 tgt tok/s;    570 s elapsed
+Epoch  6,  1150/ 2357; acc:  56.65; ppl:  10.37; xent:   2.34; 2409 src tok/s; 2437 tgt tok/s;    596 s elapsed
+Epoch  6,  1200/ 2357; acc:  56.74; ppl:  10.35; xent:   2.34; 2420 src tok/s; 2446 tgt tok/s;    623 s elapsed
+Epoch  6,  1250/ 2357; acc:  56.41; ppl:  10.66; xent:   2.37; 2367 src tok/s; 2404 tgt tok/s;    650 s elapsed
+Epoch  6,  1300/ 2357; acc:  57.50; ppl:   9.80; xent:   2.28; 2486 src tok/s; 2500 tgt tok/s;    675 s elapsed
+Epoch  6,  1350/ 2357; acc:  57.13; ppl:   9.93; xent:   2.30; 2511 src tok/s; 2554 tgt tok/s;    699 s elapsed
+Epoch  6,  1400/ 2357; acc:  56.97; ppl:  10.19; xent:   2.32; 2389 src tok/s; 2408 tgt tok/s;    727 s elapsed
+Epoch  6,  1450/ 2357; acc:  58.00; ppl:   9.52; xent:   2.25; 2477 src tok/s; 2483 tgt tok/s;    751 s elapsed
+Epoch  6,  1500/ 2357; acc:  56.73; ppl:  10.19; xent:   2.32; 2361 src tok/s; 2400 tgt tok/s;    779 s elapsed
+Epoch  6,  1550/ 2357; acc:  57.09; ppl:   9.99; xent:   2.30; 2437 src tok/s; 2469 tgt tok/s;    805 s elapsed
+Epoch  6,  1600/ 2357; acc:  57.28; ppl:   9.83; xent:   2.29; 2430 src tok/s; 2437 tgt tok/s;    830 s elapsed
+Epoch  6,  1650/ 2357; acc:  57.65; ppl:   9.68; xent:   2.27; 2420 src tok/s; 2464 tgt tok/s;    856 s elapsed
+Epoch  6,  1700/ 2357; acc:  56.76; ppl:  10.06; xent:   2.31; 2433 src tok/s; 2442 tgt tok/s;    883 s elapsed
+Epoch  6,  1750/ 2357; acc:  56.67; ppl:  10.25; xent:   2.33; 2389 src tok/s; 2407 tgt tok/s;    910 s elapsed
+Epoch  6,  1800/ 2357; acc:  57.68; ppl:   9.50; xent:   2.25; 2457 src tok/s; 2498 tgt tok/s;    934 s elapsed
+Epoch  6,  1850/ 2357; acc:  57.44; ppl:   9.62; xent:   2.26; 2428 src tok/s; 2429 tgt tok/s;    960 s elapsed
+Epoch  6,  1900/ 2357; acc:  56.79; ppl:  10.07; xent:   2.31; 2382 src tok/s; 2426 tgt tok/s;    987 s elapsed
+Epoch  6,  1950/ 2357; acc:  58.01; ppl:   9.29; xent:   2.23; 2482 src tok/s; 2488 tgt tok/s;   1011 s elapsed
+Epoch  6,  2000/ 2357; acc:  56.60; ppl:  10.15; xent:   2.32; 2390 src tok/s; 2413 tgt tok/s;   1039 s elapsed
+Epoch  6,  2050/ 2357; acc:  56.96; ppl:  10.05; xent:   2.31; 2431 src tok/s; 2463 tgt tok/s;   1065 s elapsed
+Epoch  6,  2100/ 2357; acc:  57.15; ppl:   9.65; xent:   2.27; 2416 src tok/s; 2434 tgt tok/s;   1092 s elapsed
+Epoch  6,  2150/ 2357; acc:  58.31; ppl:   9.09; xent:   2.21; 2428 src tok/s; 2464 tgt tok/s;   1115 s elapsed
+Epoch  6,  2200/ 2357; acc:  56.99; ppl:   9.98; xent:   2.30; 2450 src tok/s; 2454 tgt tok/s;   1143 s elapsed
+Epoch  6,  2250/ 2357; acc:  57.42; ppl:   9.63; xent:   2.26; 2428 src tok/s; 2465 tgt tok/s;   1169 s elapsed
+Epoch  6,  2300/ 2357; acc:  56.70; ppl:  10.07; xent:   2.31; 2414 src tok/s; 2422 tgt tok/s;   1195 s elapsed
+Epoch  6,  2350/ 2357; acc:  57.50; ppl:   9.43; xent:   2.24; 2279 src tok/s; 2292 tgt tok/s;   1223 s elapsed
+Train perplexity: 10.1568
+Train accuracy: 56.8497
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 77.6842
+Validation accuracy: 39.7713
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch  7,    50/ 2357; acc:  58.20; ppl:   8.92; xent:   2.19; 2499 src tok/s; 2514 tgt tok/s;     24 s elapsed
+Epoch  7,   100/ 2357; acc:  56.59; ppl:  10.26; xent:   2.33; 2373 src tok/s; 2408 tgt tok/s;     52 s elapsed
+Epoch  7,   150/ 2357; acc:  58.76; ppl:   8.67; xent:   2.16; 2519 src tok/s; 2543 tgt tok/s;     75 s elapsed
+Epoch  7,   200/ 2357; acc:  55.80; ppl:  10.68; xent:   2.37; 2339 src tok/s; 2381 tgt tok/s;    105 s elapsed
+Epoch  7,   250/ 2357; acc:  57.00; ppl:  10.05; xent:   2.31; 2387 src tok/s; 2404 tgt tok/s;    133 s elapsed
+Epoch  7,   300/ 2357; acc:  58.27; ppl:   9.10; xent:   2.21; 2463 src tok/s; 2483 tgt tok/s;    156 s elapsed
+Epoch  7,   350/ 2357; acc:  57.49; ppl:   9.59; xent:   2.26; 2426 src tok/s; 2438 tgt tok/s;    183 s elapsed
+Epoch  7,   400/ 2357; acc:  57.56; ppl:   9.27; xent:   2.23; 2493 src tok/s; 2531 tgt tok/s;    208 s elapsed
+Epoch  7,   450/ 2357; acc:  58.86; ppl:   8.76; xent:   2.17; 2444 src tok/s; 2454 tgt tok/s;    232 s elapsed
+Epoch  7,   500/ 2357; acc:  57.48; ppl:   9.68; xent:   2.27; 2377 src tok/s; 2395 tgt tok/s;    260 s elapsed
+Epoch  7,   550/ 2357; acc:  57.66; ppl:   9.44; xent:   2.25; 2477 src tok/s; 2502 tgt tok/s;    287 s elapsed
+Epoch  7,   600/ 2357; acc:  58.85; ppl:   8.84; xent:   2.18; 2436 src tok/s; 2454 tgt tok/s;    311 s elapsed
+Epoch  7,   650/ 2357; acc:  58.01; ppl:   9.24; xent:   2.22; 2439 src tok/s; 2463 tgt tok/s;    337 s elapsed
+Epoch  7,   700/ 2357; acc:  57.79; ppl:   9.31; xent:   2.23; 2419 src tok/s; 2440 tgt tok/s;    363 s elapsed
+Epoch  7,   750/ 2357; acc:  58.48; ppl:   9.05; xent:   2.20; 2467 src tok/s; 2482 tgt tok/s;    388 s elapsed
+Epoch  7,   800/ 2357; acc:  58.16; ppl:   9.10; xent:   2.21; 2414 src tok/s; 2426 tgt tok/s;    415 s elapsed
+Epoch  7,   850/ 2357; acc:  57.69; ppl:   9.28; xent:   2.23; 2442 src tok/s; 2461 tgt tok/s;    440 s elapsed
+Epoch  7,   900/ 2357; acc:  58.48; ppl:   8.92; xent:   2.19; 2457 src tok/s; 2483 tgt tok/s;    466 s elapsed
+Epoch  7,   950/ 2357; acc:  58.54; ppl:   9.03; xent:   2.20; 2450 src tok/s; 2450 tgt tok/s;    492 s elapsed
+Epoch  7,  1000/ 2357; acc:  58.06; ppl:   9.13; xent:   2.21; 2432 src tok/s; 2459 tgt tok/s;    518 s elapsed
+Epoch  7,  1050/ 2357; acc:  58.47; ppl:   8.83; xent:   2.18; 2414 src tok/s; 2438 tgt tok/s;    544 s elapsed
+Epoch  7,  1100/ 2357; acc:  58.39; ppl:   9.07; xent:   2.21; 2452 src tok/s; 2459 tgt tok/s;    570 s elapsed
+Epoch  7,  1150/ 2357; acc:  57.93; ppl:   9.27; xent:   2.23; 2415 src tok/s; 2443 tgt tok/s;    596 s elapsed
+Epoch  7,  1200/ 2357; acc:  57.91; ppl:   9.17; xent:   2.22; 2427 src tok/s; 2454 tgt tok/s;    622 s elapsed
+Epoch  7,  1250/ 2357; acc:  57.64; ppl:   9.46; xent:   2.25; 2334 src tok/s; 2371 tgt tok/s;    650 s elapsed
+Epoch  7,  1300/ 2357; acc:  58.90; ppl:   8.80; xent:   2.17; 2496 src tok/s; 2510 tgt tok/s;    675 s elapsed
+Epoch  7,  1350/ 2357; acc:  58.36; ppl:   8.84; xent:   2.18; 2477 src tok/s; 2519 tgt tok/s;    699 s elapsed
+Epoch  7,  1400/ 2357; acc:  58.14; ppl:   9.13; xent:   2.21; 2392 src tok/s; 2410 tgt tok/s;    727 s elapsed
+Epoch  7,  1450/ 2357; acc:  59.27; ppl:   8.49; xent:   2.14; 2478 src tok/s; 2484 tgt tok/s;    751 s elapsed
+Epoch  7,  1500/ 2357; acc:  57.74; ppl:   9.19; xent:   2.22; 2364 src tok/s; 2403 tgt tok/s;    779 s elapsed
+Epoch  7,  1550/ 2357; acc:  58.39; ppl:   8.89; xent:   2.18; 2429 src tok/s; 2461 tgt tok/s;    805 s elapsed
+Epoch  7,  1600/ 2357; acc:  58.58; ppl:   8.77; xent:   2.17; 2420 src tok/s; 2427 tgt tok/s;    831 s elapsed
+Epoch  7,  1650/ 2357; acc:  58.92; ppl:   8.59; xent:   2.15; 2405 src tok/s; 2448 tgt tok/s;    856 s elapsed
+Epoch  7,  1700/ 2357; acc:  57.99; ppl:   9.07; xent:   2.20; 2408 src tok/s; 2417 tgt tok/s;    883 s elapsed
+Epoch  7,  1750/ 2357; acc:  57.68; ppl:   9.28; xent:   2.23; 2376 src tok/s; 2394 tgt tok/s;    911 s elapsed
+Epoch  7,  1800/ 2357; acc:  58.82; ppl:   8.62; xent:   2.15; 2390 src tok/s; 2430 tgt tok/s;    936 s elapsed
+Epoch  7,  1850/ 2357; acc:  58.64; ppl:   8.64; xent:   2.16; 2437 src tok/s; 2437 tgt tok/s;    961 s elapsed
+Epoch  7,  1900/ 2357; acc:  57.94; ppl:   9.14; xent:   2.21; 2366 src tok/s; 2410 tgt tok/s;    989 s elapsed
+Epoch  7,  1950/ 2357; acc:  59.14; ppl:   8.41; xent:   2.13; 2462 src tok/s; 2468 tgt tok/s;   1013 s elapsed
+Epoch  7,  2000/ 2357; acc:  58.06; ppl:   9.15; xent:   2.21; 2408 src tok/s; 2432 tgt tok/s;   1041 s elapsed
+Epoch  7,  2050/ 2357; acc:  58.25; ppl:   9.08; xent:   2.21; 2419 src tok/s; 2452 tgt tok/s;   1067 s elapsed
+Epoch  7,  2100/ 2357; acc:  58.29; ppl:   8.71; xent:   2.16; 2408 src tok/s; 2426 tgt tok/s;   1093 s elapsed
+Epoch  7,  2150/ 2357; acc:  59.51; ppl:   8.22; xent:   2.11; 2407 src tok/s; 2442 tgt tok/s;   1117 s elapsed
+Epoch  7,  2200/ 2357; acc:  57.99; ppl:   9.03; xent:   2.20; 2436 src tok/s; 2440 tgt tok/s;   1145 s elapsed
+Epoch  7,  2250/ 2357; acc:  58.62; ppl:   8.68; xent:   2.16; 2434 src tok/s; 2472 tgt tok/s;   1171 s elapsed
+Epoch  7,  2300/ 2357; acc:  57.79; ppl:   9.02; xent:   2.20; 2426 src tok/s; 2434 tgt tok/s;   1197 s elapsed
+Epoch  7,  2350/ 2357; acc:  58.75; ppl:   8.48; xent:   2.14; 2280 src tok/s; 2292 tgt tok/s;   1225 s elapsed
+Train perplexity: 9.06913
+Train accuracy: 58.1562
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 76.4325
+Validation accuracy: 40.1887
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch  8,    50/ 2357; acc:  59.15; ppl:   8.21; xent:   2.10; 2477 src tok/s; 2492 tgt tok/s;     25 s elapsed
+Epoch  8,   100/ 2357; acc:  57.62; ppl:   9.34; xent:   2.23; 2334 src tok/s; 2368 tgt tok/s;     53 s elapsed
+Epoch  8,   150/ 2357; acc:  59.75; ppl:   7.89; xent:   2.07; 2515 src tok/s; 2540 tgt tok/s;     76 s elapsed
+Epoch  8,   200/ 2357; acc:  57.11; ppl:   9.67; xent:   2.27; 2321 src tok/s; 2362 tgt tok/s;    106 s elapsed
+Epoch  8,   250/ 2357; acc:  57.98; ppl:   9.17; xent:   2.22; 2383 src tok/s; 2400 tgt tok/s;    134 s elapsed
+Epoch  8,   300/ 2357; acc:  59.50; ppl:   8.24; xent:   2.11; 2445 src tok/s; 2465 tgt tok/s;    158 s elapsed
+Epoch  8,   350/ 2357; acc:  58.88; ppl:   8.66; xent:   2.16; 2424 src tok/s; 2437 tgt tok/s;    184 s elapsed
+Epoch  8,   400/ 2357; acc:  58.94; ppl:   8.40; xent:   2.13; 2457 src tok/s; 2494 tgt tok/s;    209 s elapsed
+Epoch  8,   450/ 2357; acc:  60.18; ppl:   7.87; xent:   2.06; 2454 src tok/s; 2463 tgt tok/s;    233 s elapsed
+Epoch  8,   500/ 2357; acc:  58.50; ppl:   8.76; xent:   2.17; 2350 src tok/s; 2368 tgt tok/s;    262 s elapsed
+Epoch  8,   550/ 2357; acc:  58.64; ppl:   8.60; xent:   2.15; 2455 src tok/s; 2480 tgt tok/s;    289 s elapsed
+Epoch  8,   600/ 2357; acc:  59.89; ppl:   7.99; xent:   2.08; 2430 src tok/s; 2448 tgt tok/s;    313 s elapsed
+Epoch  8,   650/ 2357; acc:  59.25; ppl:   8.42; xent:   2.13; 2428 src tok/s; 2453 tgt tok/s;    339 s elapsed
+Epoch  8,   700/ 2357; acc:  58.76; ppl:   8.46; xent:   2.14; 2421 src tok/s; 2442 tgt tok/s;    365 s elapsed
+Epoch  8,   750/ 2357; acc:  59.52; ppl:   8.22; xent:   2.11; 2454 src tok/s; 2469 tgt tok/s;    390 s elapsed
+Epoch  8,   800/ 2357; acc:  59.12; ppl:   8.32; xent:   2.12; 2405 src tok/s; 2417 tgt tok/s;    417 s elapsed
+Epoch  8,   850/ 2357; acc:  58.84; ppl:   8.46; xent:   2.14; 2461 src tok/s; 2480 tgt tok/s;    442 s elapsed
+Epoch  8,   900/ 2357; acc:  59.57; ppl:   8.08; xent:   2.09; 2484 src tok/s; 2510 tgt tok/s;    468 s elapsed
+Epoch  8,   950/ 2357; acc:  59.59; ppl:   8.25; xent:   2.11; 2441 src tok/s; 2441 tgt tok/s;    494 s elapsed
+Epoch  8,  1000/ 2357; acc:  59.23; ppl:   8.35; xent:   2.12; 2406 src tok/s; 2432 tgt tok/s;    520 s elapsed
+Epoch  8,  1050/ 2357; acc:  59.55; ppl:   8.05; xent:   2.09; 2427 src tok/s; 2451 tgt tok/s;    546 s elapsed
+Epoch  8,  1100/ 2357; acc:  59.39; ppl:   8.34; xent:   2.12; 2449 src tok/s; 2457 tgt tok/s;    572 s elapsed
+Epoch  8,  1150/ 2357; acc:  59.17; ppl:   8.41; xent:   2.13; 2373 src tok/s; 2400 tgt tok/s;    598 s elapsed
+Epoch  8,  1200/ 2357; acc:  59.14; ppl:   8.39; xent:   2.13; 2437 src tok/s; 2464 tgt tok/s;    625 s elapsed
+Epoch  8,  1250/ 2357; acc:  58.82; ppl:   8.65; xent:   2.16; 2361 src tok/s; 2399 tgt tok/s;    652 s elapsed
+Epoch  8,  1300/ 2357; acc:  59.85; ppl:   7.99; xent:   2.08; 2492 src tok/s; 2505 tgt tok/s;    677 s elapsed
+Epoch  8,  1350/ 2357; acc:  59.63; ppl:   8.09; xent:   2.09; 2495 src tok/s; 2539 tgt tok/s;    701 s elapsed
+Epoch  8,  1400/ 2357; acc:  59.10; ppl:   8.44; xent:   2.13; 2405 src tok/s; 2423 tgt tok/s;    729 s elapsed
+Epoch  8,  1450/ 2357; acc:  60.43; ppl:   7.70; xent:   2.04; 2471 src tok/s; 2477 tgt tok/s;    753 s elapsed
+Epoch  8,  1500/ 2357; acc:  58.83; ppl:   8.31; xent:   2.12; 2366 src tok/s; 2405 tgt tok/s;    781 s elapsed
+Epoch  8,  1550/ 2357; acc:  59.28; ppl:   8.21; xent:   2.11; 2423 src tok/s; 2455 tgt tok/s;    807 s elapsed
+Epoch  8,  1600/ 2357; acc:  59.80; ppl:   7.99; xent:   2.08; 2440 src tok/s; 2446 tgt tok/s;    832 s elapsed
+Epoch  8,  1650/ 2357; acc:  59.85; ppl:   7.94; xent:   2.07; 2409 src tok/s; 2453 tgt tok/s;    858 s elapsed
+Epoch  8,  1700/ 2357; acc:  59.16; ppl:   8.29; xent:   2.12; 2421 src tok/s; 2430 tgt tok/s;    885 s elapsed
+Epoch  8,  1750/ 2357; acc:  58.71; ppl:   8.51; xent:   2.14; 2381 src tok/s; 2399 tgt tok/s;    912 s elapsed
+Epoch  8,  1800/ 2357; acc:  60.14; ppl:   7.81; xent:   2.05; 2443 src tok/s; 2484 tgt tok/s;    937 s elapsed
+Epoch  8,  1850/ 2357; acc:  59.72; ppl:   7.86; xent:   2.06; 2449 src tok/s; 2450 tgt tok/s;    962 s elapsed
+Epoch  8,  1900/ 2357; acc:  59.00; ppl:   8.36; xent:   2.12; 2403 src tok/s; 2447 tgt tok/s;    989 s elapsed
+Epoch  8,  1950/ 2357; acc:  60.23; ppl:   7.69; xent:   2.04; 2494 src tok/s; 2500 tgt tok/s;   1013 s elapsed
+Epoch  8,  2000/ 2357; acc:  59.01; ppl:   8.41; xent:   2.13; 2398 src tok/s; 2422 tgt tok/s;   1041 s elapsed
+Epoch  8,  2050/ 2357; acc:  59.20; ppl:   8.33; xent:   2.12; 2420 src tok/s; 2452 tgt tok/s;   1067 s elapsed
+Epoch  8,  2100/ 2357; acc:  59.31; ppl:   8.03; xent:   2.08; 2423 src tok/s; 2441 tgt tok/s;   1093 s elapsed
+Epoch  8,  2150/ 2357; acc:  60.59; ppl:   7.53; xent:   2.02; 2401 src tok/s; 2436 tgt tok/s;   1117 s elapsed
+Epoch  8,  2200/ 2357; acc:  58.90; ppl:   8.31; xent:   2.12; 2430 src tok/s; 2434 tgt tok/s;   1145 s elapsed
+Epoch  8,  2250/ 2357; acc:  59.58; ppl:   7.91; xent:   2.07; 2434 src tok/s; 2472 tgt tok/s;   1171 s elapsed
+Epoch  8,  2300/ 2357; acc:  59.00; ppl:   8.30; xent:   2.12; 2414 src tok/s; 2422 tgt tok/s;   1197 s elapsed
+Epoch  8,  2350/ 2357; acc:  59.55; ppl:   7.84; xent:   2.06; 2268 src tok/s; 2280 tgt tok/s;   1225 s elapsed
+Train perplexity: 8.27675
+Train accuracy: 59.2417
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 76.4108
+Validation accuracy: 41.0758
+Decaying learning rate to 0.5
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch  9,    50/ 2357; acc:  61.07; ppl:   7.23; xent:   1.98; 2492 src tok/s; 2508 tgt tok/s;     24 s elapsed
+Epoch  9,   100/ 2357; acc:  59.74; ppl:   8.07; xent:   2.09; 2334 src tok/s; 2368 tgt tok/s;     52 s elapsed
+Epoch  9,   150/ 2357; acc:  62.07; ppl:   6.81; xent:   1.92; 2507 src tok/s; 2531 tgt tok/s;     75 s elapsed
+Epoch  9,   200/ 2357; acc:  59.28; ppl:   8.20; xent:   2.10; 2325 src tok/s; 2367 tgt tok/s;    105 s elapsed
+Epoch  9,   250/ 2357; acc:  60.61; ppl:   7.64; xent:   2.03; 2401 src tok/s; 2418 tgt tok/s;    133 s elapsed
+Epoch  9,   300/ 2357; acc:  61.96; ppl:   7.00; xent:   1.95; 2457 src tok/s; 2477 tgt tok/s;    157 s elapsed
+Epoch  9,   350/ 2357; acc:  61.45; ppl:   7.29; xent:   1.99; 2434 src tok/s; 2446 tgt tok/s;    184 s elapsed
+Epoch  9,   400/ 2357; acc:  61.40; ppl:   7.03; xent:   1.95; 2483 src tok/s; 2521 tgt tok/s;    208 s elapsed
+Epoch  9,   450/ 2357; acc:  62.50; ppl:   6.63; xent:   1.89; 2437 src tok/s; 2446 tgt tok/s;    232 s elapsed
+Epoch  9,   500/ 2357; acc:  61.03; ppl:   7.35; xent:   1.99; 2360 src tok/s; 2378 tgt tok/s;    261 s elapsed
+Epoch  9,   550/ 2357; acc:  61.49; ppl:   7.11; xent:   1.96; 2445 src tok/s; 2470 tgt tok/s;    288 s elapsed
+Epoch  9,   600/ 2357; acc:  62.65; ppl:   6.64; xent:   1.89; 2407 src tok/s; 2425 tgt tok/s;    313 s elapsed
+Epoch  9,   650/ 2357; acc:  62.06; ppl:   6.94; xent:   1.94; 2424 src tok/s; 2449 tgt tok/s;    338 s elapsed
+Epoch  9,   700/ 2357; acc:  61.82; ppl:   6.91; xent:   1.93; 2420 src tok/s; 2441 tgt tok/s;    365 s elapsed
+Epoch  9,   750/ 2357; acc:  62.40; ppl:   6.76; xent:   1.91; 2471 src tok/s; 2486 tgt tok/s;    390 s elapsed
+Epoch  9,   800/ 2357; acc:  62.01; ppl:   6.82; xent:   1.92; 2427 src tok/s; 2440 tgt tok/s;    416 s elapsed
+Epoch  9,   850/ 2357; acc:  61.77; ppl:   6.91; xent:   1.93; 2448 src tok/s; 2467 tgt tok/s;    442 s elapsed
+Epoch  9,   900/ 2357; acc:  62.43; ppl:   6.63; xent:   1.89; 2466 src tok/s; 2492 tgt tok/s;    467 s elapsed
+Epoch  9,   950/ 2357; acc:  62.70; ppl:   6.66; xent:   1.90; 2429 src tok/s; 2430 tgt tok/s;    493 s elapsed
+Epoch  9,  1000/ 2357; acc:  62.35; ppl:   6.74; xent:   1.91; 2430 src tok/s; 2457 tgt tok/s;    520 s elapsed
+Epoch  9,  1050/ 2357; acc:  62.48; ppl:   6.60; xent:   1.89; 2389 src tok/s; 2413 tgt tok/s;    546 s elapsed
+Epoch  9,  1100/ 2357; acc:  62.52; ppl:   6.69; xent:   1.90; 2460 src tok/s; 2468 tgt tok/s;    572 s elapsed
+Epoch  9,  1150/ 2357; acc:  62.07; ppl:   6.79; xent:   1.92; 2393 src tok/s; 2420 tgt tok/s;    598 s elapsed
+Epoch  9,  1200/ 2357; acc:  62.13; ppl:   6.70; xent:   1.90; 2432 src tok/s; 2459 tgt tok/s;    624 s elapsed
+Epoch  9,  1250/ 2357; acc:  61.85; ppl:   6.95; xent:   1.94; 2360 src tok/s; 2397 tgt tok/s;    651 s elapsed
+Epoch  9,  1300/ 2357; acc:  62.96; ppl:   6.41; xent:   1.86; 2487 src tok/s; 2501 tgt tok/s;    677 s elapsed
+Epoch  9,  1350/ 2357; acc:  62.83; ppl:   6.47; xent:   1.87; 2468 src tok/s; 2511 tgt tok/s;    701 s elapsed
+Epoch  9,  1400/ 2357; acc:  62.26; ppl:   6.70; xent:   1.90; 2381 src tok/s; 2399 tgt tok/s;    729 s elapsed
+Epoch  9,  1450/ 2357; acc:  63.81; ppl:   6.16; xent:   1.82; 2453 src tok/s; 2459 tgt tok/s;    754 s elapsed
+Epoch  9,  1500/ 2357; acc:  62.36; ppl:   6.64; xent:   1.89; 2353 src tok/s; 2392 tgt tok/s;    781 s elapsed
+Epoch  9,  1550/ 2357; acc:  62.82; ppl:   6.48; xent:   1.87; 2418 src tok/s; 2449 tgt tok/s;    808 s elapsed
+Epoch  9,  1600/ 2357; acc:  63.16; ppl:   6.29; xent:   1.84; 2429 src tok/s; 2435 tgt tok/s;    833 s elapsed
+Epoch  9,  1650/ 2357; acc:  63.42; ppl:   6.25; xent:   1.83; 2401 src tok/s; 2444 tgt tok/s;    858 s elapsed
+Epoch  9,  1700/ 2357; acc:  62.61; ppl:   6.54; xent:   1.88; 2420 src tok/s; 2429 tgt tok/s;    886 s elapsed
+Epoch  9,  1750/ 2357; acc:  62.14; ppl:   6.70; xent:   1.90; 2395 src tok/s; 2413 tgt tok/s;    913 s elapsed
+Epoch  9,  1800/ 2357; acc:  63.58; ppl:   6.16; xent:   1.82; 2444 src tok/s; 2485 tgt tok/s;    937 s elapsed
+Epoch  9,  1850/ 2357; acc:  63.22; ppl:   6.19; xent:   1.82; 2452 src tok/s; 2453 tgt tok/s;    963 s elapsed
+Epoch  9,  1900/ 2357; acc:  62.66; ppl:   6.56; xent:   1.88; 2416 src tok/s; 2461 tgt tok/s;    989 s elapsed
+Epoch  9,  1950/ 2357; acc:  63.72; ppl:   6.05; xent:   1.80; 2433 src tok/s; 2438 tgt tok/s;   1014 s elapsed
+Epoch  9,  2000/ 2357; acc:  62.52; ppl:   6.62; xent:   1.89; 2385 src tok/s; 2408 tgt tok/s;   1042 s elapsed
+Epoch  9,  2050/ 2357; acc:  62.73; ppl:   6.49; xent:   1.87; 2426 src tok/s; 2458 tgt tok/s;   1068 s elapsed
+Epoch  9,  2100/ 2357; acc:  63.08; ppl:   6.23; xent:   1.83; 2463 src tok/s; 2482 tgt tok/s;   1094 s elapsed
+Epoch  9,  2150/ 2357; acc:  64.13; ppl:   5.87; xent:   1.77; 2434 src tok/s; 2470 tgt tok/s;   1117 s elapsed
+Epoch  9,  2200/ 2357; acc:  62.62; ppl:   6.49; xent:   1.87; 2458 src tok/s; 2462 tgt tok/s;   1145 s elapsed
+Epoch  9,  2250/ 2357; acc:  63.18; ppl:   6.16; xent:   1.82; 2435 src tok/s; 2472 tgt tok/s;   1171 s elapsed
+Epoch  9,  2300/ 2357; acc:  62.82; ppl:   6.37; xent:   1.85; 2398 src tok/s; 2406 tgt tok/s;   1198 s elapsed
+Epoch  9,  2350/ 2357; acc:  63.40; ppl:   6.04; xent:   1.80; 2241 src tok/s; 2254 tgt tok/s;   1226 s elapsed
+Train perplexity: 6.69142
+Train accuracy: 62.3245
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 70.4635
+Validation accuracy: 42.4978
+Decaying learning rate to 0.25
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch 10,    50/ 2357; acc:  63.52; ppl:   6.14; xent:   1.81; 2475 src tok/s; 2490 tgt tok/s;     25 s elapsed
+Epoch 10,   100/ 2357; acc:  61.83; ppl:   6.95; xent:   1.94; 2346 src tok/s; 2381 tgt tok/s;     52 s elapsed
+Epoch 10,   150/ 2357; acc:  63.82; ppl:   5.89; xent:   1.77; 2518 src tok/s; 2543 tgt tok/s;     75 s elapsed
+Epoch 10,   200/ 2357; acc:  61.50; ppl:   7.10; xent:   1.96; 2330 src tok/s; 2371 tgt tok/s;    105 s elapsed
+Epoch 10,   250/ 2357; acc:  62.48; ppl:   6.65; xent:   1.89; 2399 src tok/s; 2416 tgt tok/s;    133 s elapsed
+Epoch 10,   300/ 2357; acc:  63.88; ppl:   6.07; xent:   1.80; 2480 src tok/s; 2500 tgt tok/s;    157 s elapsed
+Epoch 10,   350/ 2357; acc:  63.25; ppl:   6.36; xent:   1.85; 2423 src tok/s; 2435 tgt tok/s;    184 s elapsed
+Epoch 10,   400/ 2357; acc:  63.60; ppl:   6.13; xent:   1.81; 2503 src tok/s; 2541 tgt tok/s;    208 s elapsed
+Epoch 10,   450/ 2357; acc:  64.50; ppl:   5.80; xent:   1.76; 2457 src tok/s; 2467 tgt tok/s;    232 s elapsed
+Epoch 10,   500/ 2357; acc:  63.23; ppl:   6.38; xent:   1.85; 2371 src tok/s; 2389 tgt tok/s;    261 s elapsed
+Epoch 10,   550/ 2357; acc:  63.38; ppl:   6.21; xent:   1.83; 2463 src tok/s; 2488 tgt tok/s;    287 s elapsed
+Epoch 10,   600/ 2357; acc:  64.57; ppl:   5.81; xent:   1.76; 2428 src tok/s; 2446 tgt tok/s;    312 s elapsed
+Epoch 10,   650/ 2357; acc:  63.92; ppl:   6.06; xent:   1.80; 2432 src tok/s; 2456 tgt tok/s;    337 s elapsed
+Epoch 10,   700/ 2357; acc:  63.70; ppl:   6.07; xent:   1.80; 2423 src tok/s; 2444 tgt tok/s;    364 s elapsed
+Epoch 10,   750/ 2357; acc:  64.54; ppl:   5.88; xent:   1.77; 2459 src tok/s; 2473 tgt tok/s;    389 s elapsed
+Epoch 10,   800/ 2357; acc:  64.02; ppl:   5.96; xent:   1.79; 2425 src tok/s; 2437 tgt tok/s;    415 s elapsed
+Epoch 10,   850/ 2357; acc:  63.74; ppl:   6.02; xent:   1.79; 2451 src tok/s; 2469 tgt tok/s;    441 s elapsed
+Epoch 10,   900/ 2357; acc:  64.63; ppl:   5.77; xent:   1.75; 2480 src tok/s; 2506 tgt tok/s;    466 s elapsed
+Epoch 10,   950/ 2357; acc:  64.30; ppl:   5.86; xent:   1.77; 2449 src tok/s; 2449 tgt tok/s;    492 s elapsed
+Epoch 10,  1000/ 2357; acc:  64.25; ppl:   5.90; xent:   1.77; 2432 src tok/s; 2459 tgt tok/s;    518 s elapsed
+Epoch 10,  1050/ 2357; acc:  64.36; ppl:   5.80; xent:   1.76; 2417 src tok/s; 2441 tgt tok/s;    544 s elapsed
+Epoch 10,  1100/ 2357; acc:  64.29; ppl:   5.88; xent:   1.77; 2461 src tok/s; 2469 tgt tok/s;    570 s elapsed
+Epoch 10,  1150/ 2357; acc:  64.01; ppl:   5.96; xent:   1.79; 2396 src tok/s; 2424 tgt tok/s;    596 s elapsed
+Epoch 10,  1200/ 2357; acc:  64.19; ppl:   5.90; xent:   1.78; 2435 src tok/s; 2462 tgt tok/s;    622 s elapsed
+Epoch 10,  1250/ 2357; acc:  63.69; ppl:   6.08; xent:   1.80; 2357 src tok/s; 2394 tgt tok/s;    650 s elapsed
+Epoch 10,  1300/ 2357; acc:  64.94; ppl:   5.59; xent:   1.72; 2484 src tok/s; 2498 tgt tok/s;    675 s elapsed
+Epoch 10,  1350/ 2357; acc:  64.63; ppl:   5.69; xent:   1.74; 2502 src tok/s; 2545 tgt tok/s;    699 s elapsed
+Epoch 10,  1400/ 2357; acc:  64.39; ppl:   5.86; xent:   1.77; 2391 src tok/s; 2409 tgt tok/s;    727 s elapsed
+Epoch 10,  1450/ 2357; acc:  65.78; ppl:   5.39; xent:   1.68; 2484 src tok/s; 2490 tgt tok/s;    751 s elapsed
+Epoch 10,  1500/ 2357; acc:  64.01; ppl:   5.87; xent:   1.77; 2376 src tok/s; 2415 tgt tok/s;    778 s elapsed
+Epoch 10,  1550/ 2357; acc:  64.67; ppl:   5.67; xent:   1.74; 2417 src tok/s; 2448 tgt tok/s;    805 s elapsed
+Epoch 10,  1600/ 2357; acc:  65.05; ppl:   5.52; xent:   1.71; 2439 src tok/s; 2445 tgt tok/s;    830 s elapsed
+Epoch 10,  1650/ 2357; acc:  65.28; ppl:   5.49; xent:   1.70; 2413 src tok/s; 2456 tgt tok/s;    855 s elapsed
+Epoch 10,  1700/ 2357; acc:  64.55; ppl:   5.72; xent:   1.74; 2434 src tok/s; 2443 tgt tok/s;    882 s elapsed
+Epoch 10,  1750/ 2357; acc:  64.17; ppl:   5.84; xent:   1.76; 2348 src tok/s; 2366 tgt tok/s;    910 s elapsed
+Epoch 10,  1800/ 2357; acc:  65.33; ppl:   5.41; xent:   1.69; 2453 src tok/s; 2494 tgt tok/s;    934 s elapsed
+Epoch 10,  1850/ 2357; acc:  65.28; ppl:   5.42; xent:   1.69; 2464 src tok/s; 2464 tgt tok/s;    960 s elapsed
+Epoch 10,  1900/ 2357; acc:  64.54; ppl:   5.75; xent:   1.75; 2396 src tok/s; 2441 tgt tok/s;    987 s elapsed
+Epoch 10,  1950/ 2357; acc:  65.64; ppl:   5.29; xent:   1.67; 2475 src tok/s; 2481 tgt tok/s;   1011 s elapsed
+Epoch 10,  2000/ 2357; acc:  64.46; ppl:   5.79; xent:   1.76; 2394 src tok/s; 2417 tgt tok/s;   1039 s elapsed
+Epoch 10,  2050/ 2357; acc:  64.87; ppl:   5.67; xent:   1.73; 2430 src tok/s; 2463 tgt tok/s;   1065 s elapsed
+Epoch 10,  2100/ 2357; acc:  65.18; ppl:   5.44; xent:   1.69; 2434 src tok/s; 2452 tgt tok/s;   1091 s elapsed
+Epoch 10,  2150/ 2357; acc:  66.03; ppl:   5.13; xent:   1.64; 2428 src tok/s; 2464 tgt tok/s;   1115 s elapsed
+Epoch 10,  2200/ 2357; acc:  64.66; ppl:   5.61; xent:   1.73; 2451 src tok/s; 2454 tgt tok/s;   1143 s elapsed
+Epoch 10,  2250/ 2357; acc:  65.19; ppl:   5.41; xent:   1.69; 2421 src tok/s; 2458 tgt tok/s;   1168 s elapsed
+Epoch 10,  2300/ 2357; acc:  64.62; ppl:   5.56; xent:   1.72; 2438 src tok/s; 2446 tgt tok/s;   1195 s elapsed
+Epoch 10,  2350/ 2357; acc:  65.59; ppl:   5.27; xent:   1.66; 2288 src tok/s; 2301 tgt tok/s;   1222 s elapsed
+Train perplexity: 5.8445
+Train accuracy: 64.2884
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 71.3967
+Validation accuracy: 43.0392
+Decaying learning rate to 0.125
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch 11,    50/ 2357; acc:  64.85; ppl:   5.62; xent:   1.73; 2496 src tok/s; 2511 tgt tok/s;     24 s elapsed
+Epoch 11,   100/ 2357; acc:  62.84; ppl:   6.38; xent:   1.85; 2339 src tok/s; 2373 tgt tok/s;     52 s elapsed
+Epoch 11,   150/ 2357; acc:  65.36; ppl:   5.44; xent:   1.69; 2508 src tok/s; 2532 tgt tok/s;     75 s elapsed
+Epoch 11,   200/ 2357; acc:  62.60; ppl:   6.53; xent:   1.88; 2323 src tok/s; 2365 tgt tok/s;    105 s elapsed
+Epoch 11,   250/ 2357; acc:  63.57; ppl:   6.15; xent:   1.82; 2399 src tok/s; 2416 tgt tok/s;    133 s elapsed
+Epoch 11,   300/ 2357; acc:  64.93; ppl:   5.64; xent:   1.73; 2459 src tok/s; 2479 tgt tok/s;    157 s elapsed
+Epoch 11,   350/ 2357; acc:  64.33; ppl:   5.91; xent:   1.78; 2441 src tok/s; 2453 tgt tok/s;    184 s elapsed
+Epoch 11,   400/ 2357; acc:  64.70; ppl:   5.68; xent:   1.74; 2466 src tok/s; 2504 tgt tok/s;    208 s elapsed
+Epoch 11,   450/ 2357; acc:  65.60; ppl:   5.35; xent:   1.68; 2441 src tok/s; 2451 tgt tok/s;    232 s elapsed
+Epoch 11,   500/ 2357; acc:  64.43; ppl:   5.91; xent:   1.78; 2365 src tok/s; 2383 tgt tok/s;    261 s elapsed
+Epoch 11,   550/ 2357; acc:  64.42; ppl:   5.81; xent:   1.76; 2466 src tok/s; 2491 tgt tok/s;    288 s elapsed
+Epoch 11,   600/ 2357; acc:  65.54; ppl:   5.39; xent:   1.68; 2405 src tok/s; 2423 tgt tok/s;    313 s elapsed
+Epoch 11,   650/ 2357; acc:  64.81; ppl:   5.66; xent:   1.73; 2433 src tok/s; 2457 tgt tok/s;    338 s elapsed
+Epoch 11,   700/ 2357; acc:  64.89; ppl:   5.64; xent:   1.73; 2428 src tok/s; 2449 tgt tok/s;    364 s elapsed
+Epoch 11,   750/ 2357; acc:  65.70; ppl:   5.48; xent:   1.70; 2465 src tok/s; 2480 tgt tok/s;    389 s elapsed
+Epoch 11,   800/ 2357; acc:  64.74; ppl:   5.58; xent:   1.72; 2432 src tok/s; 2445 tgt tok/s;    416 s elapsed
+Epoch 11,   850/ 2357; acc:  64.68; ppl:   5.63; xent:   1.73; 2461 src tok/s; 2479 tgt tok/s;    441 s elapsed
+Epoch 11,   900/ 2357; acc:  65.48; ppl:   5.40; xent:   1.69; 2473 src tok/s; 2499 tgt tok/s;    467 s elapsed
+Epoch 11,   950/ 2357; acc:  65.71; ppl:   5.48; xent:   1.70; 2456 src tok/s; 2457 tgt tok/s;    492 s elapsed
+Epoch 11,  1000/ 2357; acc:  65.19; ppl:   5.48; xent:   1.70; 2397 src tok/s; 2424 tgt tok/s;    519 s elapsed
+Epoch 11,  1050/ 2357; acc:  65.52; ppl:   5.41; xent:   1.69; 2421 src tok/s; 2445 tgt tok/s;    545 s elapsed
+Epoch 11,  1100/ 2357; acc:  65.44; ppl:   5.47; xent:   1.70; 2447 src tok/s; 2454 tgt tok/s;    571 s elapsed
+Epoch 11,  1150/ 2357; acc:  65.10; ppl:   5.56; xent:   1.72; 2414 src tok/s; 2442 tgt tok/s;    597 s elapsed
+Epoch 11,  1200/ 2357; acc:  64.97; ppl:   5.49; xent:   1.70; 2419 src tok/s; 2446 tgt tok/s;    623 s elapsed
+Epoch 11,  1250/ 2357; acc:  64.67; ppl:   5.67; xent:   1.74; 2372 src tok/s; 2410 tgt tok/s;    650 s elapsed
+Epoch 11,  1300/ 2357; acc:  66.05; ppl:   5.22; xent:   1.65; 2491 src tok/s; 2505 tgt tok/s;    675 s elapsed
+Epoch 11,  1350/ 2357; acc:  65.43; ppl:   5.31; xent:   1.67; 2501 src tok/s; 2545 tgt tok/s;    699 s elapsed
+Epoch 11,  1400/ 2357; acc:  65.58; ppl:   5.45; xent:   1.70; 2388 src tok/s; 2406 tgt tok/s;    728 s elapsed
+Epoch 11,  1450/ 2357; acc:  66.62; ppl:   5.04; xent:   1.62; 2496 src tok/s; 2502 tgt tok/s;    752 s elapsed
+Epoch 11,  1500/ 2357; acc:  65.23; ppl:   5.44; xent:   1.69; 2375 src tok/s; 2414 tgt tok/s;    779 s elapsed
+Epoch 11,  1550/ 2357; acc:  65.63; ppl:   5.30; xent:   1.67; 2430 src tok/s; 2462 tgt tok/s;    806 s elapsed
+Epoch 11,  1600/ 2357; acc:  66.00; ppl:   5.16; xent:   1.64; 2417 src tok/s; 2423 tgt tok/s;    831 s elapsed
+Epoch 11,  1650/ 2357; acc:  66.42; ppl:   5.08; xent:   1.63; 2426 src tok/s; 2469 tgt tok/s;    856 s elapsed
+Epoch 11,  1700/ 2357; acc:  65.80; ppl:   5.29; xent:   1.67; 2417 src tok/s; 2426 tgt tok/s;    883 s elapsed
+Epoch 11,  1750/ 2357; acc:  65.03; ppl:   5.46; xent:   1.70; 2377 src tok/s; 2394 tgt tok/s;    910 s elapsed
+Epoch 11,  1800/ 2357; acc:  66.38; ppl:   5.04; xent:   1.62; 2450 src tok/s; 2491 tgt tok/s;    935 s elapsed
+Epoch 11,  1850/ 2357; acc:  66.36; ppl:   5.05; xent:   1.62; 2451 src tok/s; 2452 tgt tok/s;    961 s elapsed
+Epoch 11,  1900/ 2357; acc:  65.63; ppl:   5.38; xent:   1.68; 2405 src tok/s; 2450 tgt tok/s;    987 s elapsed
+Epoch 11,  1950/ 2357; acc:  66.79; ppl:   4.88; xent:   1.59; 2487 src tok/s; 2493 tgt tok/s;   1011 s elapsed
+Epoch 11,  2000/ 2357; acc:  65.54; ppl:   5.38; xent:   1.68; 2405 src tok/s; 2429 tgt tok/s;   1039 s elapsed
+Epoch 11,  2050/ 2357; acc:  65.98; ppl:   5.24; xent:   1.66; 2390 src tok/s; 2422 tgt tok/s;   1066 s elapsed
+Epoch 11,  2100/ 2357; acc:  66.19; ppl:   5.04; xent:   1.62; 2429 src tok/s; 2447 tgt tok/s;   1092 s elapsed
+Epoch 11,  2150/ 2357; acc:  67.15; ppl:   4.79; xent:   1.57; 2433 src tok/s; 2468 tgt tok/s;   1115 s elapsed
+Epoch 11,  2200/ 2357; acc:  65.70; ppl:   5.21; xent:   1.65; 2452 src tok/s; 2456 tgt tok/s;   1143 s elapsed
+Epoch 11,  2250/ 2357; acc:  66.27; ppl:   5.01; xent:   1.61; 2437 src tok/s; 2475 tgt tok/s;   1169 s elapsed
+Epoch 11,  2300/ 2357; acc:  65.80; ppl:   5.19; xent:   1.65; 2430 src tok/s; 2438 tgt tok/s;   1195 s elapsed
+Epoch 11,  2350/ 2357; acc:  66.48; ppl:   4.90; xent:   1.59; 2263 src tok/s; 2275 tgt tok/s;   1223 s elapsed
+Train perplexity: 5.43242
+Train accuracy: 65.3515
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 72.1798
+Validation accuracy: 43.4197
+Decaying learning rate to 0.0625
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch 12,    50/ 2357; acc:  65.43; ppl:   5.38; xent:   1.68; 2451 src tok/s; 2466 tgt tok/s;     25 s elapsed
+Epoch 12,   100/ 2357; acc:  63.72; ppl:   6.12; xent:   1.81; 2331 src tok/s; 2365 tgt tok/s;     53 s elapsed
+Epoch 12,   150/ 2357; acc:  65.73; ppl:   5.23; xent:   1.65; 2511 src tok/s; 2535 tgt tok/s;     76 s elapsed
+Epoch 12,   200/ 2357; acc:  63.20; ppl:   6.27; xent:   1.84; 2293 src tok/s; 2334 tgt tok/s;    106 s elapsed
+Epoch 12,   250/ 2357; acc:  64.24; ppl:   5.90; xent:   1.77; 2400 src tok/s; 2417 tgt tok/s;    134 s elapsed
+Epoch 12,   300/ 2357; acc:  65.73; ppl:   5.40; xent:   1.69; 2443 src tok/s; 2463 tgt tok/s;    158 s elapsed
+Epoch 12,   350/ 2357; acc:  64.98; ppl:   5.65; xent:   1.73; 2426 src tok/s; 2438 tgt tok/s;    185 s elapsed
+Epoch 12,   400/ 2357; acc:  65.26; ppl:   5.45; xent:   1.70; 2477 src tok/s; 2515 tgt tok/s;    210 s elapsed
+Epoch 12,   450/ 2357; acc:  66.31; ppl:   5.16; xent:   1.64; 2427 src tok/s; 2437 tgt tok/s;    234 s elapsed
+Epoch 12,   500/ 2357; acc:  64.85; ppl:   5.69; xent:   1.74; 2362 src tok/s; 2380 tgt tok/s;    263 s elapsed
+Epoch 12,   550/ 2357; acc:  64.91; ppl:   5.59; xent:   1.72; 2450 src tok/s; 2475 tgt tok/s;    289 s elapsed
+Epoch 12,   600/ 2357; acc:  66.38; ppl:   5.17; xent:   1.64; 2423 src tok/s; 2441 tgt tok/s;    314 s elapsed
+Epoch 12,   650/ 2357; acc:  65.30; ppl:   5.44; xent:   1.69; 2425 src tok/s; 2449 tgt tok/s;    339 s elapsed
+Epoch 12,   700/ 2357; acc:  65.28; ppl:   5.46; xent:   1.70; 2393 src tok/s; 2414 tgt tok/s;    366 s elapsed
+Epoch 12,   750/ 2357; acc:  66.07; ppl:   5.27; xent:   1.66; 2471 src tok/s; 2486 tgt tok/s;    391 s elapsed
+Epoch 12,   800/ 2357; acc:  65.52; ppl:   5.35; xent:   1.68; 2411 src tok/s; 2424 tgt tok/s;    418 s elapsed
+Epoch 12,   850/ 2357; acc:  65.38; ppl:   5.40; xent:   1.69; 2434 src tok/s; 2453 tgt tok/s;    443 s elapsed
+Epoch 12,   900/ 2357; acc:  65.88; ppl:   5.19; xent:   1.65; 2481 src tok/s; 2508 tgt tok/s;    469 s elapsed
+Epoch 12,   950/ 2357; acc:  66.08; ppl:   5.28; xent:   1.66; 2449 src tok/s; 2449 tgt tok/s;    494 s elapsed
+Epoch 12,  1000/ 2357; acc:  65.74; ppl:   5.28; xent:   1.66; 2411 src tok/s; 2437 tgt tok/s;    521 s elapsed
+Epoch 12,  1050/ 2357; acc:  65.95; ppl:   5.18; xent:   1.65; 2443 src tok/s; 2468 tgt tok/s;    547 s elapsed
+Epoch 12,  1100/ 2357; acc:  65.90; ppl:   5.30; xent:   1.67; 2472 src tok/s; 2480 tgt tok/s;    572 s elapsed
+Epoch 12,  1150/ 2357; acc:  65.73; ppl:   5.35; xent:   1.68; 2416 src tok/s; 2444 tgt tok/s;    598 s elapsed
+Epoch 12,  1200/ 2357; acc:  65.75; ppl:   5.31; xent:   1.67; 2453 src tok/s; 2479 tgt tok/s;    625 s elapsed
+Epoch 12,  1250/ 2357; acc:  65.31; ppl:   5.46; xent:   1.70; 2374 src tok/s; 2411 tgt tok/s;    652 s elapsed
+Epoch 12,  1300/ 2357; acc:  66.40; ppl:   5.05; xent:   1.62; 2502 src tok/s; 2516 tgt tok/s;    676 s elapsed
+Epoch 12,  1350/ 2357; acc:  66.20; ppl:   5.09; xent:   1.63; 2500 src tok/s; 2543 tgt tok/s;    700 s elapsed
+Epoch 12,  1400/ 2357; acc:  65.78; ppl:   5.27; xent:   1.66; 2383 src tok/s; 2402 tgt tok/s;    729 s elapsed
+Epoch 12,  1450/ 2357; acc:  67.29; ppl:   4.85; xent:   1.58; 2485 src tok/s; 2491 tgt tok/s;    753 s elapsed
+Epoch 12,  1500/ 2357; acc:  65.67; ppl:   5.24; xent:   1.66; 2372 src tok/s; 2411 tgt tok/s;    780 s elapsed
+Epoch 12,  1550/ 2357; acc:  66.31; ppl:   5.11; xent:   1.63; 2417 src tok/s; 2449 tgt tok/s;    807 s elapsed
+Epoch 12,  1600/ 2357; acc:  66.42; ppl:   5.00; xent:   1.61; 2444 src tok/s; 2450 tgt tok/s;    832 s elapsed
+Epoch 12,  1650/ 2357; acc:  66.83; ppl:   4.93; xent:   1.59; 2422 src tok/s; 2465 tgt tok/s;    857 s elapsed
+Epoch 12,  1700/ 2357; acc:  66.23; ppl:   5.13; xent:   1.64; 2419 src tok/s; 2428 tgt tok/s;    884 s elapsed
+Epoch 12,  1750/ 2357; acc:  65.79; ppl:   5.25; xent:   1.66; 2398 src tok/s; 2415 tgt tok/s;    911 s elapsed
+Epoch 12,  1800/ 2357; acc:  66.98; ppl:   4.85; xent:   1.58; 2464 src tok/s; 2505 tgt tok/s;    936 s elapsed
+Epoch 12,  1850/ 2357; acc:  66.79; ppl:   4.87; xent:   1.58; 2459 src tok/s; 2459 tgt tok/s;    961 s elapsed
+Epoch 12,  1900/ 2357; acc:  66.00; ppl:   5.18; xent:   1.64; 2412 src tok/s; 2457 tgt tok/s;    988 s elapsed
+Epoch 12,  1950/ 2357; acc:  67.39; ppl:   4.72; xent:   1.55; 2487 src tok/s; 2493 tgt tok/s;   1012 s elapsed
+Epoch 12,  2000/ 2357; acc:  65.97; ppl:   5.17; xent:   1.64; 2404 src tok/s; 2428 tgt tok/s;   1040 s elapsed
+Epoch 12,  2050/ 2357; acc:  66.49; ppl:   5.07; xent:   1.62; 2427 src tok/s; 2460 tgt tok/s;   1066 s elapsed
+Epoch 12,  2100/ 2357; acc:  66.74; ppl:   4.88; xent:   1.59; 2450 src tok/s; 2468 tgt tok/s;   1092 s elapsed
+Epoch 12,  2150/ 2357; acc:  67.81; ppl:   4.59; xent:   1.52; 2417 src tok/s; 2453 tgt tok/s;   1115 s elapsed
+Epoch 12,  2200/ 2357; acc:  66.24; ppl:   5.02; xent:   1.61; 2453 src tok/s; 2457 tgt tok/s;   1143 s elapsed
+Epoch 12,  2250/ 2357; acc:  66.93; ppl:   4.83; xent:   1.57; 2446 src tok/s; 2484 tgt tok/s;   1169 s elapsed
+Epoch 12,  2300/ 2357; acc:  66.27; ppl:   5.00; xent:   1.61; 2434 src tok/s; 2442 tgt tok/s;   1195 s elapsed
+Epoch 12,  2350/ 2357; acc:  67.36; ppl:   4.73; xent:   1.55; 2260 src tok/s; 2272 tgt tok/s;   1223 s elapsed
+Train perplexity: 5.2309
+Train accuracy: 65.9138
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 72.8416
+Validation accuracy: 43.6045
+Decaying learning rate to 0.03125
+
+Loading train dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.train.1.pt, number of examples: 150801
+Using fixed fertility of 1.500000
+Epoch 13,    50/ 2357; acc:  65.97; ppl:   5.25; xent:   1.66; 2496 src tok/s; 2511 tgt tok/s;     24 s elapsed
+Epoch 13,   100/ 2357; acc:  64.02; ppl:   6.00; xent:   1.79; 2345 src tok/s; 2379 tgt tok/s;     52 s elapsed
+Epoch 13,   150/ 2357; acc:  66.16; ppl:   5.10; xent:   1.63; 2512 src tok/s; 2536 tgt tok/s;     75 s elapsed
+Epoch 13,   200/ 2357; acc:  63.55; ppl:   6.15; xent:   1.82; 2295 src tok/s; 2336 tgt tok/s;    106 s elapsed
+Epoch 13,   250/ 2357; acc:  64.69; ppl:   5.77; xent:   1.75; 2387 src tok/s; 2404 tgt tok/s;    134 s elapsed
+Epoch 13,   300/ 2357; acc:  65.83; ppl:   5.28; xent:   1.66; 2438 src tok/s; 2458 tgt tok/s;    158 s elapsed
+Epoch 13,   350/ 2357; acc:  65.35; ppl:   5.55; xent:   1.71; 2408 src tok/s; 2420 tgt tok/s;    185 s elapsed
+Epoch 13,   400/ 2357; acc:  65.50; ppl:   5.32; xent:   1.67; 2485 src tok/s; 2523 tgt tok/s;    209 s elapsed
+Epoch 13,   450/ 2357; acc:  66.49; ppl:   5.04; xent:   1.62; 2444 src tok/s; 2454 tgt tok/s;    233 s elapsed
+Epoch 13,   500/ 2357; acc:  65.00; ppl:   5.58; xent:   1.72; 2354 src tok/s; 2372 tgt tok/s;    262 s elapsed
+Epoch 13,   550/ 2357; acc:  65.22; ppl:   5.45; xent:   1.69; 2456 src tok/s; 2481 tgt tok/s;    289 s elapsed
+Epoch 13,   600/ 2357; acc:  66.65; ppl:   5.06; xent:   1.62; 2390 src tok/s; 2407 tgt tok/s;    314 s elapsed
+Epoch 13,   650/ 2357; acc:  65.65; ppl:   5.32; xent:   1.67; 2421 src tok/s; 2445 tgt tok/s;    339 s elapsed
+Epoch 13,   700/ 2357; acc:  65.54; ppl:   5.33; xent:   1.67; 2425 src tok/s; 2446 tgt tok/s;    366 s elapsed
+Epoch 13,   750/ 2357; acc:  66.43; ppl:   5.17; xent:   1.64; 2475 src tok/s; 2490 tgt tok/s;    391 s elapsed
+Epoch 13,   800/ 2357; acc:  65.95; ppl:   5.23; xent:   1.65; 2424 src tok/s; 2437 tgt tok/s;    417 s elapsed
+Epoch 13,   850/ 2357; acc:  65.54; ppl:   5.29; xent:   1.67; 2445 src tok/s; 2463 tgt tok/s;    443 s elapsed
+Epoch 13,   900/ 2357; acc:  66.29; ppl:   5.09; xent:   1.63; 2449 src tok/s; 2475 tgt tok/s;    469 s elapsed
+Epoch 13,   950/ 2357; acc:  66.16; ppl:   5.17; xent:   1.64; 2410 src tok/s; 2411 tgt tok/s;    494 s elapsed
+Epoch 13,  1000/ 2357; acc:  66.03; ppl:   5.18; xent:   1.64; 2419 src tok/s; 2446 tgt tok/s;    521 s elapsed
+Epoch 13,  1050/ 2357; acc:  66.24; ppl:   5.09; xent:   1.63; 2420 src tok/s; 2444 tgt tok/s;    547 s elapsed
+Epoch 13,  1100/ 2357; acc:  66.23; ppl:   5.16; xent:   1.64; 2445 src tok/s; 2453 tgt tok/s;    573 s elapsed
+Epoch 13,  1150/ 2357; acc:  65.92; ppl:   5.24; xent:   1.66; 2402 src tok/s; 2429 tgt tok/s;    599 s elapsed
+Epoch 13,  1200/ 2357; acc:  66.02; ppl:   5.17; xent:   1.64; 2427 src tok/s; 2453 tgt tok/s;    625 s elapsed
+Epoch 13,  1250/ 2357; acc:  65.66; ppl:   5.37; xent:   1.68; 2361 src tok/s; 2398 tgt tok/s;    653 s elapsed
+Epoch 13,  1300/ 2357; acc:  66.76; ppl:   4.96; xent:   1.60; 2510 src tok/s; 2525 tgt tok/s;    677 s elapsed
+Epoch 13,  1350/ 2357; acc:  66.38; ppl:   5.01; xent:   1.61; 2477 src tok/s; 2520 tgt tok/s;    702 s elapsed
+Epoch 13,  1400/ 2357; acc:  66.14; ppl:   5.17; xent:   1.64; 2398 src tok/s; 2416 tgt tok/s;    730 s elapsed
+Epoch 13,  1450/ 2357; acc:  67.58; ppl:   4.75; xent:   1.56; 2481 src tok/s; 2487 tgt tok/s;    754 s elapsed
+Epoch 13,  1500/ 2357; acc:  65.87; ppl:   5.16; xent:   1.64; 2375 src tok/s; 2414 tgt tok/s;    781 s elapsed
+Epoch 13,  1550/ 2357; acc:  66.35; ppl:   5.02; xent:   1.61; 2433 src tok/s; 2465 tgt tok/s;    808 s elapsed
+Epoch 13,  1600/ 2357; acc:  66.91; ppl:   4.90; xent:   1.59; 2429 src tok/s; 2435 tgt tok/s;    833 s elapsed
+Epoch 13,  1650/ 2357; acc:  67.12; ppl:   4.84; xent:   1.58; 2424 src tok/s; 2468 tgt tok/s;    858 s elapsed
+Epoch 13,  1700/ 2357; acc:  66.43; ppl:   5.05; xent:   1.62; 2420 src tok/s; 2429 tgt tok/s;    885 s elapsed
+Epoch 13,  1750/ 2357; acc:  66.09; ppl:   5.14; xent:   1.64; 2398 src tok/s; 2415 tgt tok/s;    912 s elapsed
+Epoch 13,  1800/ 2357; acc:  67.24; ppl:   4.77; xent:   1.56; 2457 src tok/s; 2498 tgt tok/s;    937 s elapsed
+Epoch 13,  1850/ 2357; acc:  67.14; ppl:   4.76; xent:   1.56; 2455 src tok/s; 2455 tgt tok/s;    962 s elapsed
+Epoch 13,  1900/ 2357; acc:  66.30; ppl:   5.08; xent:   1.63; 2392 src tok/s; 2436 tgt tok/s;    989 s elapsed
+Epoch 13,  1950/ 2357; acc:  67.71; ppl:   4.62; xent:   1.53; 2461 src tok/s; 2467 tgt tok/s;   1013 s elapsed
+Epoch 13,  2000/ 2357; acc:  66.42; ppl:   5.03; xent:   1.62; 2377 src tok/s; 2400 tgt tok/s;   1042 s elapsed
+Epoch 13,  2050/ 2357; acc:  66.76; ppl:   4.97; xent:   1.60; 2385 src tok/s; 2417 tgt tok/s;   1068 s elapsed
+Epoch 13,  2100/ 2357; acc:  67.15; ppl:   4.79; xent:   1.57; 2431 src tok/s; 2450 tgt tok/s;   1094 s elapsed
+Epoch 13,  2150/ 2357; acc:  68.07; ppl:   4.53; xent:   1.51; 2418 src tok/s; 2454 tgt tok/s;   1118 s elapsed
+Epoch 13,  2200/ 2357; acc:  66.53; ppl:   4.94; xent:   1.60; 2434 src tok/s; 2438 tgt tok/s;   1146 s elapsed
+Epoch 13,  2250/ 2357; acc:  67.16; ppl:   4.72; xent:   1.55; 2432 src tok/s; 2470 tgt tok/s;   1172 s elapsed
+Epoch 13,  2300/ 2357; acc:  66.71; ppl:   4.88; xent:   1.58; 2423 src tok/s; 2431 tgt tok/s;   1198 s elapsed
+Epoch 13,  2350/ 2357; acc:  67.43; ppl:   4.63; xent:   1.53; 2281 src tok/s; 2293 tgt tok/s;   1226 s elapsed
+Train perplexity: 5.12391
+Train accuracy: 66.2071
+Loading valid dataset from /mnt/data/de-en-scnmt/preprocessed.sink.align.valid.1.pt, number of examples: 1997
+Using fixed fertility of 1.500000
+Validation perplexity: 72.4987
+Validation accuracy: 43.711
+Decaying learning rate to 0.015625

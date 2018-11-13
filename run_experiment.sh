@@ -18,10 +18,13 @@ echo "seed: ${SEED}"
 echo "attention: ${ATTN}"
 echo "constrained attention value: ${cattn}"
 echo "fertility type: ${FERTTYPE}"
+echo "fertility (if fixed): ${FERTILITY}"
+echo "coverage: ${COVERAGE}"
 
-LANGPAIR=${SOURCE}-${TARGET}-md
+LANGPAIR=${SOURCE}-${TARGET}-scnmt
 DATA=/mnt/data/${LANGPAIR}
-MODEL=/mnt/model/${LANGPAIR}
+MODEL=/mnt/data/${LANGPAIR}/${ATTN}
+#MODEL=/mnt/data/${LANGPAIR}/${ATTN}_${FERTTYPE}_${FERTILITY}_${cattn}
 OPENNMT=/home/ubuntu/OpenNMT-py-un
 SCRIPTS="`cd $(dirname $0);pwd`"
 LOGS=${SCRIPTS}/logs
@@ -53,6 +56,7 @@ if $train
 then
     if [ "$ATTN" == "softmax" ] || [ "$ATTN" == "sparsemax" ]
     then
+        echo "hey"
         # Add a `-fertility 1` flag to use the sink token (the default is not to use it).
         python -u train.py -data ${DATA}/preprocessed.sink.align \
                -save_model ${MODEL}/preprocessed_${ATTN}_cattn-${cattn}${EXTRA_NAME} \
@@ -82,6 +86,7 @@ then
                ${LOGS}/log_${LANGPAIR}_${ATTN}_${FERTTYPE}-${FERTILITY}_cattn-${cattn}${EXTRA_NAME}.txt
     elif [ "$FERTTYPE" == "guided" ] || [ "$FERTTYPE" == "predicted" ] || [ "$FERTTYPE" == "actual" ]
     then
+        echo "Training"
         python -u train.py -data ${DATA}/preprocessed.sink.align \
                -save_model ${MODEL}/preprocessed_${ATTN}_${FERTTYPE}_cattn-${cattn}${EXTRA_NAME} \
                -layers 2 \

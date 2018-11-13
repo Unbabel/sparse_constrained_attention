@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "train.py", line 536, in <module>
+    main()
+  File "train.py", line 510, in main
+    first_dataset = next(lazily_load_dataset("train"))
+  File "train.py", line 349, in lazily_load_dataset
+    yield lazy_dataset_loader(pt, corpus_type)
+  File "train.py", line 319, in lazy_dataset_loader
+    dataset = torch.load(pt_file)
+  File "/home/ubuntu/Envs/cov/local/lib/python2.7/site-packages/torch/serialization.py", line 261, in load
+    return _load(f, map_location, pickle_module)
+  File "/home/ubuntu/Envs/cov/local/lib/python2.7/site-packages/torch/serialization.py", line 409, in _load
+    result = unpickler.load()
+  File "/home/ubuntu/OpenNMT-py-un/onmt/io/DatasetBase.py", line 30, in __setstate__
+    def __setstate__(self, d):
+KeyboardInterrupt

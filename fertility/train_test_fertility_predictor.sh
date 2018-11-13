@@ -2,11 +2,11 @@ SOURCE=$1 # ro
 TARGET=$2 # en
 MODEL_TYPE=$3 # classification|regression
 LANGPAIR=${SOURCE}-${TARGET}
-DATA=/mnt/data/${LANGPAIR}-md
+DATA=/mnt/data/${LANGPAIR}-scnmt
 SCRIPTS="`cd $(dirname $0);cd ..;pwd`"
 LOGS=${SCRIPTS}/logs
 
-train=false
+train=true
 
 pred_test=true
 pred_valid=true
@@ -87,6 +87,4 @@ then
     echo
 
 fi
-
-
 

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "train.py", line 51, in <module>
+    if torch.cuda.is_available() and not opt.gpuid:
+  File "/home/ubuntu/Envs/cov/local/lib/python2.7/site-packages/torch/cuda/__init__.py", line 31, in is_available
+    not torch._C._cuda_isDriverSufficient()):
+KeyboardInterrupt
